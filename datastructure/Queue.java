@@ -3,6 +3,8 @@ public class Queue {
 	private Node first;
 	private Node last;
 
+	private Vertex v;
+
 	public Queue() {
 	}
 
@@ -25,4 +27,11 @@ public class Queue {
 		return ret;
 	}
 
+	public boolean isEmpty() {
+		return first == null;
+	}
+
+	public void enqueue(Vertex v) {
+
+	}
 }
