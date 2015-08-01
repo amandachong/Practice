@@ -1,0 +1,40 @@
+public class MinStack {
+
+	private Node top;
+
+	public void push(Node node) {
+		if (isEmpty()) {
+			top = node;
+			top.min = top;
+		} else {
+			Node temp = top;
+			top = node;
+			top.next = temp;
+			top.min = temp.data < node.data ? temp : top;
+		}
+	}
+
+	public Node pop() {
+		if (isEmpty()) {
+			return null;
+		}
+		Node ret = top;
+		top = top.next;
+		return ret;
+	}
+
+	public Node min() {
+		if (isEmpty()) {
+			return null;
+		}
+		return top.min;
+	}
+
+	public Node top() {
+		return top;
+	}
+
+	public boolean isEmpty() {
+		return top == null;
+	}
+}

@@ -9,6 +9,8 @@ public class Node {
 	boolean visited = false;
 	Node[] adjacentNodes;
 	int height;
+	int distance;
+	Node min;
 
 	public Node() {
 	}
@@ -26,6 +28,10 @@ public class Node {
 		return next;
 	}
 
+	public int getValue() {
+		return data;
+	}
+
 	public void appendToTail(int d) {
 		Node nodeForTail = new Node(d);
 		Node n = this;
@@ -39,18 +45,18 @@ public class Node {
 		return adjacentNodes;
 	}
 
-	public Node deleteNode(Node head, int d) {
-		Node n = head;
-		if (n.data == d) {
+	public static Node deleteNode(Node head, int data) {
+		Node node = head;
+		if (node.data == data) {
 			return head.next;
 		}
 
-		while (n.next != null) {
-			if (n.next.data == d) {
-				n.next = n.next.next;
+		while (node.next != null) {
+			if (node.next.data == data) {
+				node.next = node.next.next;
 				return head;
 			}
-			n = n.next;
+			node = node.next;
 		}
 		return head;
 	}

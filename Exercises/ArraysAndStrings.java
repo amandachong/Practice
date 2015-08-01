@@ -36,10 +36,6 @@ public class ArraysAndStrings {
 		return newString;
 	}
 
-	public void rotate90(int[][] matrix) {
-		
-	}
-
 	public void convertMatrix(int[][] matrix) {
 		int[] row = new int[matrix.length];
 		int[] column = new int[matrix[0].length];

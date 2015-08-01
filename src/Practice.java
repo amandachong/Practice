@@ -4,41 +4,6 @@ import java.util.HashSet;
 public class Practice {
 
 	/**
-	 * Given a singly linked list, swap the list in pairs (reconnect the
-	 * pointers, not simply swap the values).
-	 * 
-	 * For example: Before: A -> B -> C -> D After: B -> A -> D -> C
-	 */
-	public static Node swapPairs(Node node) {
-		if (node == null) {
-			return node;
-		}
-		if (node.next == null) {
-			return node;
-		}
-		Node ret = node.next;
-		Node nextNext = node.next.next;
-		ret.next = node;
-		node.next = swapPairs(nextNext);
-		return ret;
-	}
-
-	public static void testSwapPairs() {
-		Node a = new Node("A");
-		a.add(new Node("B")).add(new Node("C")).add(new Node("D"))
-				.add(new Node("E"));
-		// printNodes(a);
-		printNodes(swapPairs(a));
-	}
-
-	public static void printNodes(Node node) {
-		while (node != null) {
-			System.out.println(node.d);
-			node = node.next;
-		}
-	}
-
-	/**
 	 * Given a list of integers, return true if two of the numbers add to 12.
 	 */
 	public static boolean addTo12(ArrayList<Integer> numbers) {

@@ -3,14 +3,39 @@ import java.util.List;
 
 public class BreadthFirstSearch {
 
+	private final int INFINITE = Integer.MAX_VALUE;
+
+	public void breadthFirstSearch(Node node) {
+		node.distance = 0;
+		Queue queue = new Queue();
+		queue.enqueue(node);
+		while (!queue.isEmpty()) {
+			node = queue.dequeue();
+			if (!node.visited) {
+				node.visited = true;
+				for (Node adjacent : node.getAdjacentNodes()) {
+					adjacent.distance = node.distance + 1;
+					queue.enqueue(adjacent);
+				}
+			}
+		}
+	}
+
+	public void visit(Node node) {
+		System.out.println(node.data);
+	}
+
 	public void BFS(Node root) {
 		Queue queue = new Queue();
-		queue.enqueue(root);
 		root.visited = true;
+		visit(root);
+		queue.enqueue(root);
+
 		while (!queue.isEmpty()) {
-			Node node = (Node) queue.dequeue();
+			Node node = queue.dequeue();
 			for (Node adjacent : node.getAdjacentNodes()) {
-				if (!adjacent.visited) {
+				if (adjacent.visited == false) {
+					visit(adjacent);
 					adjacent.visited = true;
 					queue.enqueue(adjacent);
 				}
@@ -19,7 +44,6 @@ public class BreadthFirstSearch {
 	}
 
 	public void breadthFirstSearch(ArrayList array, Vertex s) {
-
 		int distance = 0;
 		s.distance = distance;
 		Queue queue = new Queue();
@@ -34,7 +58,6 @@ public class BreadthFirstSearch {
 					queue.enqueue(v);
 				}
 			}
-
 		}
 		for (int i = 0; i < array.size(); i++) {
 			for (int j = 0; j < array[i][j]; j++) {
@@ -44,7 +67,5 @@ public class BreadthFirstSearch {
 			}
 		}
 		return true;
-
 	}
-
 }

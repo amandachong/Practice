@@ -1,7 +1,7 @@
 public class Queue {
 
-	private Node first;
-	private Node last;
+	private Node front;
+	private Node back;
 
 	private Vertex v;
 
@@ -9,26 +9,26 @@ public class Queue {
 	}
 
 	public void enqueue(Node node) {
-		if (first == last) {
-			first = node;
-			last = first;
+		if (isEmpty()) {
+			front = node;
+			back = front;
 		} else {
-			last.next = node;
-			last = last.next;
+			back.next = node;
+			back = back.next;
 		}
 	}
 
 	public Node dequeue() {
-		if (first == null) {
+		if (isEmpty()) {
 			return null;
 		}
-		Node ret = first;
-		first = first.next;
+		Node ret = front;
+		front = front.next;
 		return ret;
 	}
 
 	public boolean isEmpty() {
-		return first == null;
+		return front == null;
 	}
 
 	public void enqueue(Vertex v) {
