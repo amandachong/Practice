@@ -1,5 +1,3 @@
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.Hashtable;
 
 public class LinkedLists {
@@ -120,9 +118,29 @@ public class LinkedLists {
 		return n1;
 	}
 
+	public Node mthToLast(Node node, int m) {
+		if (node == null || m < 1) {
+			return null;
+		}
+		Node ret = node;
+		Node last = node;
+		while (m > 0) {
+			if (last == null) {
+				return null;
+			}
+			last = last.next;
+			m--;
+		}
+		while (last != null) {
+			ret = ret.next;
+			last = last.next;
+		}
+
+		return ret;
+	}
+
 	// Return head
 	public Node deleteNode(Node head, int data) {
-
 		Node node = head;
 		if (node.data == data) {
 			return node.next;
@@ -135,6 +153,19 @@ public class LinkedLists {
 			node = node.next;
 		}
 		return head;
+	}
+
+	/**
+	 * You are given a linked list with at least one node that is either
+	 * nullterminated (acyclic) or ends in a cycle (cyclic).
+	 * 
+	 * Write a function that takes a pointer to the head of a list and
+	 * determines whether the list is cyclic or acyclic. Your function should
+	 * return false if the list is acyclic and true if it is cyclic. You may not
+	 * modify the list in any way.
+	 */
+	public boolean determineTermination(Node head) {
+
 	}
 
 }
