@@ -7,9 +7,8 @@ public class ArraysAndStrings {
 		for (int i = 0; i < word.length(); i++) {
 			if (hashTable.get(word.charAt(i))) {
 				return false;
-			} else {
-				hashTable.put(word.substring(i, i + 1), true);
 			}
+			hashTable.put(word.substring(i, i + 1), true);
 		}
 		return true;
 	}

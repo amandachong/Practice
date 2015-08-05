@@ -88,8 +88,4 @@ public class Practice {
 		circle.next = treeToCircle(tree.right);
 		return circle;
 	}
-
-	public static void main(String[] args) {
-
-	}
 }

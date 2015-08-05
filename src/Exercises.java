@@ -1,6 +1,5 @@
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashSet;
 
 public class Exercises {
 	public static void main(String[] args) {
@@ -40,7 +39,7 @@ public class Exercises {
 		System.out.println(stringToInt("-1a23"));
 		printAllFactors(100);
 	}
-	
+
 	public Node reverse(Node node) {
 		Node root = node;
 		Node next = node.next;
@@ -98,13 +97,11 @@ public class Exercises {
 		return maxSum;
 	}
 
-	public static boolean isPalindrome(String s) {
-		int j = s.length() - 1;
+	public boolean isPalindrome(String s) {
 		for (int i = 0; i < s.length() / 2; i++) {
-			if (s.charAt(i) != s.charAt(j)) {
+			if (s.charAt(i) != s.charAt(s.length() - 1 - i)) {
 				return false;
 			}
-			j--;
 		}
 		return true;
 	}
@@ -264,16 +261,6 @@ public class Exercises {
 		return recursiveFib(n - 1) + recursiveFib(n - 2);
 	}
 
-	public static boolean palindrome(String s) {
-
-		for (int i = 0; i < s.length() / 2; i++) {
-			if (s.charAt(i) != s.charAt(s.length() - 1 - i)) {
-				return false;
-			}
-		}
-		return true;
-	}
-
 	public int iterativeFib(int n) {
 		if (n == 0) {
 			return 0;
@@ -310,12 +297,5 @@ public class Exercises {
 		}
 		System.out.println(array.length - j);
 		return array;
-	}
-
-	public int maxDepth(Node root) {
-		if (root == null) {
-			return 0;
-		}
-		return Math.max(maxDepth(root.left), maxDepth(root.right)) + 1;
 	}
 }

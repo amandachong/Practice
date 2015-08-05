@@ -378,7 +378,7 @@ public class LeetCodeEasy {
 	 * For example, given the array [−2,1,−3,4,−1,2,1,−5,4], the contiguous
 	 * subarray [4,−1,2,1] has the largest sum = 6.
 	 */
-	public static int maxSubArray(int[] array) {
+	public static int maxSumSubArray(int[] array) {
 		int max = array[0];
 		int newSum = array[0];
 		for (int i = 1; i < array.length; i++) {
