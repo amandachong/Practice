@@ -4,7 +4,7 @@ import java.util.LinkedList;
 
 import javax.swing.JOptionPane;
 
-public class Practice {
+public class Sample {
 
 	/**
 	 * You're given a dictionary of strings, and a key. Check if the key is

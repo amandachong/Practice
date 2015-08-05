@@ -1,3 +1,4 @@
+import java.util.HashSet;
 import java.util.Hashtable;
 
 public class LinkedLists {
@@ -157,7 +158,7 @@ public class LinkedLists {
 
 	/**
 	 * You are given a linked list with at least one node that is either
-	 * nullterminated (acyclic) or ends in a cycle (cyclic).
+	 * null-terminated (acyclic) or ends in a cycle (cyclic).
 	 * 
 	 * Write a function that takes a pointer to the head of a list and
 	 * determines whether the list is cyclic or acyclic. Your function should
@@ -165,7 +166,16 @@ public class LinkedLists {
 	 * modify the list in any way.
 	 */
 	public boolean determineTermination(Node head) {
-
+		HashSet<Node> hashSet = new HashSet<Node>();
+		Node node = head;
+		while (node != null) {
+			if (hashSet.contains(node)) {
+				return false;
+			}
+			hashSet.add(node);
+			node = node.next;
+		}
+		return true;
 	}
 
 }
