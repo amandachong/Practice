@@ -4,8 +4,8 @@ import java.util.Arrays;
 public class Exercises {
 	public static void main(String[] args) {
 		int[] a = new int[] { 1, 0, 2, 0, 0, 3, 4 };
-		System.out.println(palindrome("moooooooom"));
-		System.out.println(palindrome("moooojoooom"));
+		System.out.println(isPalindrome("moooooooom"));
+		System.out.println(isPalindrome("moooojoooom"));
 
 		System.out.println(nonZeroElements(a));
 
@@ -97,7 +97,7 @@ public class Exercises {
 		return maxSum;
 	}
 
-	public boolean isPalindrome(String s) {
+	public static boolean isPalindrome(String s) {
 		for (int i = 0; i < s.length() / 2; i++) {
 			if (s.charAt(i) != s.charAt(s.length() - 1 - i)) {
 				return false;
