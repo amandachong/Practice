@@ -1,7 +1,7 @@
 public class AVLTree {
 
-	public void rotateRight(Node a) {
-		Node b = a.right;
+	public void rotateRight(TreeNode a) {
+		TreeNode b = a.right;
 		a.right = b.left;
 		b.left = a;
 		updateHeight(a);
@@ -9,18 +9,18 @@ public class AVLTree {
 		a = b;
 	}
 
-	void doubleRotateRight(Node a) {
+	void doubleRotateRight(TreeNode a) {
 		rotateLeft(a.right);
 		rotateRight(a);
 	}
 
-	void doubleRotateLeft(Node a) {
+	void doubleRotateLeft(TreeNode a) {
 		rotateRight(a.left);
 		rotateLeft(a);
 	}
 
-	public void rotateLeft(Node a) {
-		Node b = a.left;
+	public void rotateLeft(TreeNode a) {
+		TreeNode b = a.left;
 		a.left = b.right;
 		b.right = a;
 		updateHeight(a);
@@ -28,15 +28,15 @@ public class AVLTree {
 		a = b;
 	}
 
-	public void updateHeight(Node a) {
+	public void updateHeight(TreeNode a) {
 		a.height = 1 + Math.max(height(a.left), height(a.right));
 	}
 
-	public boolean isBalanced(Node root) {
+	public boolean isBalanced(TreeNode root) {
 		return Math.abs(height(root.left) - height(root.right)) <= 1;
 	}
 
-	public int height(Node root) {
+	public int height(TreeNode root) {
 		if (root == null) {
 			return 0;
 		}

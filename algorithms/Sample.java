@@ -1,8 +1,5 @@
 import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.LinkedList;
-
-import javax.swing.JOptionPane;
 
 public class Sample {
 
@@ -152,7 +149,7 @@ public class Sample {
 	/**
 	 * Inorder traversal of binary tree recursively
 	 */
-	public void inOrderTraversal(Node node) {
+	public void inOrderTraversal(TreeNode node) {
 		if (node == null)
 			return;
 		inOrderTraversal(node.left);
@@ -163,7 +160,7 @@ public class Sample {
 	/**
 	 * Inorder traversal of binary tree iteratively
 	 */
-	public void traverseInorderIterative(Node node) {
+	public void traverseInorderIterative(TreeNode node) {
 		Stack stack = new Stack();
 		while (node != null || !stack.isEmpty()) {
 			if (node != null) {
@@ -271,7 +268,7 @@ public class Sample {
 		}
 	}
 
-	public static int maxDepth(Node node) {
+	public static int maxDepth(TreeNode node) {
 		if (node == null) {
 			return 0;
 		}
@@ -399,11 +396,11 @@ public class Sample {
 
 	}
 
-	public boolean isTreeMirror(Node root) {
+	public boolean isTreeMirror(TreeNode root) {
 		return compareHelper(root.left, root.right);
 	}
 
-	public boolean compareHelper(Node left, Node right) {
+	public boolean compareHelper(TreeNode left, TreeNode right) {
 		if (left == null && right == null) {
 			return true;
 		}
@@ -415,14 +412,14 @@ public class Sample {
 		return false;
 	}
 
-	public boolean symmetric(Node root) {
+	public boolean symmetric(TreeNode root) {
 		if (root == null) {
 			return true;
 		}
 		return symmetricHelper(root.left, root.right);
 	}
 
-	public boolean symmetricHelper(Node left, Node right) {
+	public boolean symmetricHelper(TreeNode left, TreeNode right) {
 		if (left == null && right == null) {
 			return true;
 		}

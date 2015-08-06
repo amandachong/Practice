@@ -31,13 +31,13 @@ public class BinarySearch {
 		return -1;
 	}
 
-	public Node binarySearch(Node root, int value) {
+	public TreeNode binarySearch(TreeNode root, int value) {
 		while (root != null) {
-			if (root.data == value) {
+			if (root.val == value) {
 				break;
-			} else if (value < root.data) {
+			} else if (value < root.val) {
 				root = root.left;
-			} else if (value > root.data) {
+			} else if (value > root.val) {
 				root = root.right;
 			}
 		}

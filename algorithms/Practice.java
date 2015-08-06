@@ -78,26 +78,26 @@ public class Practice {
 	 * 
 	 * Note: This is not a binary search tree.
 	 */
-	public static Node treeToCircle(Node tree) {
+	public static Node treeToCircle(TreeNode tree) {
 		if (tree == null) {
-			return tree;
+			return null;
 		}
 		Node circle = new Node();
 		circle.previous = treeToCircle(tree.left);
-		circle.data = tree.data;
+		circle.data = tree.val;
 		circle.next = treeToCircle(tree.right);
 		return circle;
 	}
-	
+
 	public boolean isPrime(int n) {
-	  if (n % 2 == 0) {
-	    return false;
-	  }
-	  for (int i = 3; i * i <= n; i += 2) {
-	    if (n % i == 0) {
-	      return false
-	    }
-	  }
-	  return true;
+		if (n % 2 == 0) {
+			return false;
+		}
+		for (int i = 3; i * i <= n; i += 2) {
+			if (n % i == 0) {
+				return false;
+			}
+		}
+		return true;
 	}
 }
