@@ -3,6 +3,9 @@ public class FrontBackQueue {
 	private Node front;
 	private Node back;
 
+	public FrontBackQueue() {
+	}
+
 	public void enqueueFront(int data) {
 		Node node = new Node(data);
 		if (isEmpty()) {
@@ -28,24 +31,24 @@ public class FrontBackQueue {
 		}
 	}
 
-	public Node dequeueFront() {
+	public int dequeueFront() {
 		if (!isEmpty()) {
 			Node ret = front;
 			front = front.next;
 			front.previous = null;
-			return ret;
+			return ret.data;
 		}
-		return null;
+		return -1;
 	}
 
-	public Node dequeueBack() {
+	public int dequeueBack() {
 		if (!isEmpty()) {
 			Node ret = back;
 			back = back.previous;
 			back.next = null;
-			return ret;
+			return ret.data;
 		}
-		return null;
+		return -1;
 	}
 
 	public boolean isEmpty() {
