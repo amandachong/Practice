@@ -1,19 +1,19 @@
 /**
  * Definition for singly-linked list.
  */
-public class ListNode {
+public class ListNode extends Node {
 
-	int val;
-	int min;
-	ListNode next;
-	String s;
+	public int val;
+	public ListNode next;
+	public int min;
+	public String s;
 
-	ListNode(int x) {
+	public ListNode(int x) {
 		val = x;
 		next = null;
 	}
 
-	ListNode(String s) {
+	public ListNode(String s) {
 		this.s = s;
 		next = null;
 	}

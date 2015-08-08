@@ -153,11 +153,13 @@ public class ProjectEuler {
 		}
 		int current = max;
 		for (int i = 13; i < digits.length; i++) {
-			int value = queue.dequeueBack();
-			current /= value == 0 ? 1 : value;
-			queue.enqueueFront(digits[i]);
-			current *= digits[i];
-			max = Math.max(max, current);
+			if (digits[i] != 0) {
+				int value = queue.dequeueBack();
+				current /= value == 0 ? 1 : value;
+				queue.enqueueFront(digits[i]);
+				current *= digits[i];
+				max = Math.max(max, current);
+			}
 		}
 		return max;
 	}
