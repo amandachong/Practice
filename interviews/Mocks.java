@@ -1,4 +1,5 @@
 import java.util.Arrays;
+import java.util.HashMap;
 
 public class Mocks {
 
@@ -11,11 +12,10 @@ public class Mocks {
 		String output = "";
 		int rows = keyboard[0].length;
 		int start = intValue('a');
+		int startX = start % rows;
+		int startY = start / rows;
 		for (int i = 0; i < input.length(); i++) {
 			int value = intValue(input.charAt(i));
-
-			int startX = start % rows;
-			int startY = start / rows;
 			int x = value % rows;
 			int y = value / rows;
 
@@ -53,7 +53,8 @@ public class Mocks {
 				}
 			}
 			output += "_";
-			start = value;
+			startX = x;
+			startY = y;
 		}
 		return output.substring(0, output.length() - 1);
 	}
@@ -167,6 +168,43 @@ public class Mocks {
 		return false;
 	}
 
+	/**
+	 * Write a function which, given two integers (a numerator and a
+	 * denominator), prints the decimal representation of the rational number
+	 * "numerator/denominator".
+	 * 
+	 * Since all rational numbers end with a repeating section, print the
+	 * repeating section of digits inside parentheses; the decimal printout will
+	 * be/must be
+	 */
+	public static String divide(int a, int b) {
+		int real = a / b;
+		int r = a % b;
+		String decimal = "";
+		HashMap<Integer, Integer> remainders = new HashMap<Integer, Integer>();
+		int i = 0;
+		while (r != 0) {
+			if (!remainders.containsKey(r)) {
+				remainders.put(r, i);
+			} else {
+				decimal = decimal.substring(0, remainders.get(r))
+						+ '('
+						+ decimal
+								.substring(remainders.get(r), decimal.length());
+				break;
+			}
+			r *= 10;
+			int digit = r / b;
+			r = r % b;
+			decimal += digit;
+			i++;
+		}
+		if (r != 0) {
+			decimal += ')';
+		}
+		return real + "." + decimal;
+	}
+
 	public static void main(String[] args) {
 		char[][] keyboard = new char[][] { { 'a', 'b', 'c', 'd', 'e' },
 				{ 'f', 'g', 'h', 'i', 'j' }, { 'k', 'l', 'm', 'n', 'o' },
@@ -177,5 +215,8 @@ public class Mocks {
 		calculateDimensions(4);
 		System.out.println(isAnagram("abcd", "dcba"));
 		System.out.println(isAnagram("red", "red deer"));
+		System.out.println(divide(1, 3));
+		System.out.println(divide(2, 4));
+		System.out.println(divide(22, 7));
 	}
 }
