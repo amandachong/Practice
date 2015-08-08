@@ -1,3 +1,7 @@
+/**
+ * Design a stack. We want to push, pop, and also, retrieve the minimum element
+ * in constant time.
+ */
 public class MinStack {
 
 	private Node top;

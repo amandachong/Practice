@@ -167,7 +167,7 @@ public class Sample {
 				stack.push(node);
 				node = node.left;
 			} else {
-				node = stack.pop();
+				node = (TreeNode) stack.pop();
 				System.out.println(node.data);
 				node = node.right;
 			}
@@ -225,10 +225,10 @@ public class Sample {
 
 	public static void findTripletsOfTarget(ArrayList<Integer> elements,
 			int target) {
-		HashSet elementsHashed = new HashSet<Integer>();
+		HashSet<Integer> elementsHashed = new HashSet<Integer>();
 		elementsHashed.addAll(elements);
 
-		HashSet triplets = new HashSet<Integer>();
+		HashSet<String> triplets = new HashSet<String>();
 		for (int i = 0; i < elements.size(); i++) {
 			for (int j = i + 1; j < elements.size(); j++) {
 				int k = target - elements.get(i) - elements.get(j);
@@ -273,40 +273,6 @@ public class Sample {
 			return 0;
 		}
 		return 1 + Math.max(maxDepth(node.left), maxDepth(node.right));
-	}
-
-	/**
-	 * Given a linked list, write a function to reverse every k nodes (where k
-	 * is an input to the function).
-	 * 
-	 * Example:
-	 * 
-	 * Inputs: 1->2->3->4->5->6->7->8->NULL and k = 3
-	 * 
-	 * Output: 3->2->1->6->5->4->8->7->NULL.
-	 * 
-	 * Inputs: 1->2->3->4->5->6->7->8->NULL and k = 5
-	 * 
-	 * Output: 5->4->3->2->1->8->7->6->NULL.
-	 */
-	public static Node reverseEveryKNodes(Node head, int k) {
-		if (head == null) {
-			return head;
-		}
-		ArrayList<Node> splitNodes = new ArrayList<Node>();
-		Node node = head;
-		int count = 0;
-		while (node.next != null) {
-			node = node.next;
-			if (count == k) {
-
-			}
-		}
-		Node nextK = null;
-		for (int i = 0; i < k; i++) {
-
-		}
-		return null;
 	}
 
 	/**

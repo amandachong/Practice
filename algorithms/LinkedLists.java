@@ -3,10 +3,8 @@ import java.util.Hashtable;
 
 public class LinkedLists {
 
-	public Node beginningOfLoop(Node n) {
-
-		Hashtable table = new Hashtable();
-
+	public ListNode beginningOfLoop(ListNode n) {
+		Hashtable<Integer, ListNode> table = new Hashtable<Integer, ListNode>();
 		while (n != null) {
 			if (table.contains(n)) {
 				return n;
@@ -14,12 +12,10 @@ public class LinkedLists {
 			table.put(n.data, n);
 			n = n.next;
 		}
-
 		return null;
 	}
 
-	public Node add(Node first, Node second, int carry) {
-
+	public ListNode add(ListNode first, ListNode second, int carry) {
 		if (first == null && second == null) {
 			return null;
 		}
@@ -32,11 +28,11 @@ public class LinkedLists {
 		return first;
 	}
 
-	public Node add(Node n1, Node n2) {
-		Node result = null;
+	public ListNode add(ListNode n1, ListNode n2) {
+		ListNode result = null;
 		int carry = 0;
 		int value = 0;
-		Node n = result;
+		ListNode n = result;
 		while (true) {
 			if (n1 == null && n2 == null)
 				break;
@@ -48,7 +44,7 @@ public class LinkedLists {
 			if (value > 10) {
 				carry = 1;
 			}
-			n = new Node(value % 10);
+			n = new ListNode(value % 10);
 			n1 = n1.next;
 			n2 = n2.next;
 			n = n.next;
@@ -56,9 +52,9 @@ public class LinkedLists {
 		return result;
 	}
 
-	public Node findBeginning(Node head) {
-		Node n1 = head;
-		Node n2 = head;
+	public ListNode findBeginning(ListNode head) {
+		ListNode n1 = head;
+		ListNode n2 = head;
 		while (n2.next != null) {
 			n1 = n1.next;
 			n2 = n2.next.next;
@@ -75,7 +71,7 @@ public class LinkedLists {
 		return n2;
 	}
 
-	public boolean deleteNode(Node n) {
+	public boolean deleteNode(ListNode n) {
 		if (n == null || n.next == null) {
 			return false;
 		}
@@ -83,9 +79,8 @@ public class LinkedLists {
 		return true;
 	}
 
-	@SuppressWarnings({ "unchecked", "rawtypes" })
-	public void deleteDuplicates(Node n) {
-		Hashtable table = new Hashtable();
+	public void deleteDuplicates(ListNode n) {
+		Hashtable<Integer, Boolean> table = new Hashtable<Integer, Boolean>();
 		table.put(n.data, true);
 		while (n.next != null) {
 			if (table.containsKey(n.next.data))
@@ -98,13 +93,13 @@ public class LinkedLists {
 		}
 	}
 
-	public Node nthToLast(Node node, int n) {
+	public ListNode nthToLast(ListNode node, int n) {
 		if (node == null || n < 1) {
 			return null;
 		}
 
-		Node n1 = node;
-		Node n2 = node;
+		ListNode n1 = node;
+		ListNode n2 = node;
 
 		for (int i = 0; i < n; i++) {
 			if (n2 == null)
@@ -119,12 +114,12 @@ public class LinkedLists {
 		return n1;
 	}
 
-	public Node mthToLast(Node node, int m) {
+	public ListNode mthToLast(ListNode node, int m) {
 		if (node == null || m < 1) {
 			return null;
 		}
-		Node ret = node;
-		Node last = node;
+		ListNode ret = node;
+		ListNode last = node;
 		while (m > 0) {
 			if (last == null) {
 				return null;
@@ -140,9 +135,11 @@ public class LinkedLists {
 		return ret;
 	}
 
-	// Return head
-	public Node deleteNode(Node head, int data) {
-		Node node = head;
+	/**
+	 * Returns the head.
+	 */
+	public ListNode deleteNode(ListNode head, int data) {
+		ListNode node = head;
 		if (node.data == data) {
 			return node.next;
 		}
@@ -165,9 +162,9 @@ public class LinkedLists {
 	 * return false if the list is acyclic and true if it is cyclic. You may not
 	 * modify the list in any way.
 	 */
-	public boolean determineTermination(Node head) {
-		HashSet<Node> hashSet = new HashSet<Node>();
-		Node node = head;
+	public boolean determineTermination(ListNode head) {
+		HashSet<ListNode> hashSet = new HashSet<ListNode>();
+		ListNode node = head;
 		while (node != null) {
 			if (hashSet.contains(node)) {
 				return false;

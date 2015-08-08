@@ -46,7 +46,6 @@ public class Mocks {
 		}
 
 		int[] ret = array.clone();
-		int start = 0;
 		int end = 0;
 		int num = array[0];
 		for (int i = 1; i < array.length; i++) {

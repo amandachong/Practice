@@ -5,9 +5,8 @@ public class Node {
 	public int data;
 	public String d;
 	boolean visited = false;
-	Node[] adjacentNodes;
-	int height;
-	int distance;
+	private Node[] adjacentNodes;
+	public int distance;
 	Node min;
 
 	public Node() {

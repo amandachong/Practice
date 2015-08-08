@@ -3,8 +3,6 @@ public class Queue {
 	private Node front;
 	private Node back;
 
-	private Vertex v;
-
 	public Queue() {
 	}
 
@@ -29,9 +27,5 @@ public class Queue {
 
 	public boolean isEmpty() {
 		return front == null;
-	}
-
-	public void enqueue(Vertex v) {
-
 	}
 }

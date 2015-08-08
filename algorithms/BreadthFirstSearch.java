@@ -1,4 +1,3 @@
-import java.util.ArrayList;
 import java.util.List;
 
 public class BreadthFirstSearch {
@@ -43,7 +42,7 @@ public class BreadthFirstSearch {
 		}
 	}
 
-	public void breadthFirstSearch(ArrayList array, Vertex s) {
+	public boolean breadthFirstSearch(Node[][] array, Vertex s) {
 		int distance = 0;
 		s.distance = distance;
 		Queue queue = new Queue();
@@ -52,15 +51,15 @@ public class BreadthFirstSearch {
 			Vertex vertex = (Vertex) queue.dequeue();
 			if (vertex.distance == INFINITE) {
 				vertex.distance = distance;
-				List<Vertex> adjacentVertices = v.getAdjacentVertices();
+				List<Vertex> adjacentVertices = vertex.getAdjacentVertices();
 				for (Vertex v : adjacentVertices) {
 					v.distance = distance + 1;
 					queue.enqueue(v);
 				}
 			}
 		}
-		for (int i = 0; i < array.size(); i++) {
-			for (int j = 0; j < array[i][j]; j++) {
+		for (int i = 0; i < array.length; i++) {
+			for (int j = 0; j < array[i].length; j++) {
 				if (array[i][j].distance == INFINITE) {
 					return false;
 				}

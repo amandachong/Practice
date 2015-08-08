@@ -1,4 +1,4 @@
-public class TreeNode {
+public class TreeNode extends Node {
 
 	public int val;
 	public TreeNode left;

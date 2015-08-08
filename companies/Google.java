@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.HashSet;
 
 public class Google {
@@ -40,6 +41,17 @@ public class Google {
 				System.out.println(m);
 			}
 		}
+	}
+
+	/**
+	 * Given a set of coin denominators, find the minimum number of coins to
+	 * give a certain amount of change.
+	 */
+	public int minCoins(int change, int[] coins) {
+		int numberOfCoins = 0;
+		Arrays.sort(coins);
+
+		return numberOfCoins;
 	}
 
 	public static void main(String[] args) {

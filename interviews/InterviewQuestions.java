@@ -1,5 +1,4 @@
 import java.util.Arrays;
-import java.util.HashSet;
 
 public class InterviewQuestions {
 
@@ -15,7 +14,6 @@ public class InterviewQuestions {
 	 */
 	public void printTriplets(int[] array, int target) {
 		Arrays.sort(array);
-		HashSet hashSet = new HashSet();
 		for (int i = 0; i < array.length - 2; i++) {
 			int m = i + 1;
 			int u = array.length - 1;

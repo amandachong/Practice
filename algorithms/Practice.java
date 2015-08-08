@@ -7,7 +7,7 @@ public class Practice {
 	 * Given a list of integers, return true if two of the numbers add to 12.
 	 */
 	public static boolean addTo12(ArrayList<Integer> numbers) {
-		HashSet hashSet = new HashSet();
+		HashSet<Integer> hashSet = new HashSet<Integer>();
 		for (Integer number : numbers) {
 			if (hashSet.contains(number)) {
 				return true;

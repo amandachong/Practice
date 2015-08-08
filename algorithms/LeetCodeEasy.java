@@ -7,7 +7,7 @@ public class LeetCodeEasy {
 	 * node at which the intersection of two singly linked lists begins.
 	 */
 	public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
-		HashSet<ListNode> hashSet = new HashSet();
+		HashSet<ListNode> hashSet = new HashSet<ListNode>();
 		ListNode head = headA;
 		while (head != null) {
 			hashSet.add(head);
@@ -170,7 +170,7 @@ public class LeetCodeEasy {
 	 * every element is distinct.
 	 */
 	public boolean containsDuplicate(int[] nums) {
-		HashSet hashSet = new HashSet();
+		HashSet<Integer> hashSet = new HashSet<Integer>();
 		for (int num : nums) {
 			if (hashSet.contains(num)) {
 				return true;
