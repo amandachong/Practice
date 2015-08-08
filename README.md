@@ -1,9 +1,9 @@
 General practice questions.
 
-datastructure:	Contains data structures to be used in other questions.
+datastructure:  Contains data structures to be used in other questions.
 
-algorithms:		Contains general algorithm questions found on various sites and books.
+algorithms:     Contains general algorithm questions found on various sites and books.
 
-interviews:		Contains questions I have received on various interviews.
+interviews:     Contains questions I have received on various interviews.
 
-companies:		Contains company specific interview questions from the web.
+companies:      Contains company specific interview questions from the web.
