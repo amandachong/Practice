@@ -1,39 +1,65 @@
+import java.util.Arrays;
+
 public class Mocks {
 
-	public String keyboardDirections(String input, int col) {
+	/**
+	 * Given some input and a keyboard, return how to navigate through the
+	 * keyboard to produce the input using left, right, up and left. Accessing
+	 * characters in the last row other than 'z' will cause a crash so avoid it.
+	 */
+	public static String keyboardDirections(String input, char[][] keyboard) {
 		String output = "";
+		int rows = keyboard[0].length;
 		int start = intValue('a');
 		for (int i = 0; i < input.length(); i++) {
-			int startX = start % col;
-			int startY = start / col;
-
 			int value = intValue(input.charAt(i));
-			int x = value % col;
-			int y = value / col;
 
-			String letter = "L";
-			if (x - startX > 0) {
-				letter = "R";
-			}
-			for (int j = 0; j < Math.abs(x - startX); j++) {
-				output += letter;
-			}
+			int startX = start % rows;
+			int startY = start / rows;
+			int x = value % rows;
+			int y = value / rows;
 
-			letter = "D";
-			if (y - startY > 0) {
+			if (input.charAt(i) == 'z') {
+				String letter = "L";
+				if (x - startX > 0) {
+					letter = "R";
+				}
+				for (int j = 0; j < Math.abs(x - startX); j++) {
+					output += letter;
+				}
+
 				letter = "U";
-			}
-			for (int j = 0; j < Math.abs(x - startX); j++) {
-				output += letter;
+				if (y - startY > 0) {
+					letter = "D";
+				}
+				for (int j = 0; j < Math.abs(y - startY); j++) {
+					output += letter;
+				}
+			} else {
+				String letter = "U";
+				if (y - startY > 0) {
+					letter = "D";
+				}
+				for (int j = 0; j < Math.abs(y - startY); j++) {
+					output += letter;
+				}
+
+				letter = "L";
+				if (x - startX > 0) {
+					letter = "R";
+				}
+				for (int j = 0; j < Math.abs(x - startX); j++) {
+					output += letter;
+				}
 			}
 			output += "_";
 			start = value;
 		}
-		return output;
+		return output.substring(0, output.length() - 1);
 	}
 
-	private int intValue(char c) {
-		return 0;
+	private static int intValue(char c) {
+		return c - '0' - 49;
 	}
 
 	/**
@@ -74,43 +100,6 @@ public class Mocks {
 		return next;
 	}
 
-	public static void minSquare(int n) {
-		if (n == 0) {
-			return;
-		}
-		int sqrt = (int) Math.sqrt(n);
-		if (sqrt * sqrt == n) {
-			System.out.println("(" + Math.sqrt(n) + ", " + Math.sqrt(n) + ")");
-		} else {
-			int min = Integer.MAX_VALUE;
-			int start = n;
-			int end = 1;
-			int x = start;
-			int y = end;
-			int diff = Integer.MAX_VALUE;
-			while (start > end) {
-				if (start % end == 0) {
-					int currentMin = start * end - n;
-					if (currentMin < min) {
-						min = currentMin;
-						x = start;
-						y = end;
-						diff = Math.abs(x - y);
-					} else if (currentMin == min) {
-						int currentDiff = Math.abs(start - end);
-						if (currentDiff < diff) {
-							x = start;
-							y = end;
-						}
-					}
-					start--;
-					end++;
-				}
-			}
-			System.out.println("(" + x + ", " + y + ")");
-		}
-	}
-
 	/**
 	 * Distilled problem statement: given n, find x and y so that n <= x*y <=
 	 * n-2 and abs(x-y)->min. n,y,x are positive integers. There is always the
@@ -143,12 +132,50 @@ public class Mocks {
 	 * Write a function to find the nth smallest element in a binary search
 	 * tree.
 	 */
-	public TreeNode nthSmallestBinaryTree(TreeNode node) {
-		return null;
+	public static TreeNode nthSmallestElement(TreeNode root, int n) {
+		return nthSmallestElement(root, n, 0);
+	}
+
+	public static TreeNode nthSmallestElement(TreeNode node, int n,
+			int seenSoFar) {
+		if (node == null) {
+			return null;
+		}
+		TreeNode temp = nthSmallestElement(node.left, n, seenSoFar);
+		if (temp != null) {
+			return temp;
+		}
+		seenSoFar++;
+		if (seenSoFar == n) {
+			return node;
+		}
+		return nthSmallestElement(node.right, n, seenSoFar);
+	}
+
+	public static boolean isAnagram(String s1, String s2) {
+		if (s1.length() != s2.length()) {
+			return false;
+		}
+		char[] first = s1.toCharArray();
+		char[] second = s2.toCharArray();
+		Arrays.sort(first);
+		Arrays.sort(second);
+
+		if (new String(first).equals(new String(second))) {
+			return true;
+		}
+		return false;
 	}
 
 	public static void main(String[] args) {
+		char[][] keyboard = new char[][] { { 'a', 'b', 'c', 'd', 'e' },
+				{ 'f', 'g', 'h', 'i', 'j' }, { 'k', 'l', 'm', 'n', 'o' },
+				{ 'p', 'q', 'r', 's', 't' }, { 'u', 'v', 'w', 'x', 'y' },
+				{ 'z' } };
+		System.out.println(keyboardDirections("dog", keyboard));
+		System.out.println(keyboardDirections("zed", keyboard));
 		calculateDimensions(4);
-		minSquare(4);
+		System.out.println(isAnagram("abcd", "dcba"));
+		System.out.println(isAnagram("red", "red deer"));
 	}
 }
