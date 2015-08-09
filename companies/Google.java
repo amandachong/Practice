@@ -86,7 +86,7 @@ public class Google {
 	 * [b1 To bn] where bi = a1 * a2 * … * an / ai. You are allowed to use only
 	 * constant space and the time complexity is O(n). No divisions are allowed.
 	 */
-	public int[] productExceptSelf(int[] array) {
+	public static int[] productExceptSelf(int[] array) {
 		int[] result = new int[array.length];
 		result[result.length - 1] = 1;
 		for (int i = array.length - 2; i >= 0; i--) {
@@ -105,5 +105,10 @@ public class Google {
 		findSmallStrings(
 				"find the small strings that occurr in the big string",
 				new String[] { "find", "that", "big ", "noth" }, 4);
+
+		int[] product = productExceptSelf(new int[] { 1, 2, 3, 4, 5 });
+		for (int digit : product) {
+			System.out.print(digit + " ");
+		}
 	}
 }

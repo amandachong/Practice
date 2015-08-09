@@ -1,4 +1,5 @@
 import java.util.Arrays;
+import java.util.HashMap;
 
 public class Mocks {
 
@@ -88,9 +89,78 @@ public class Mocks {
 		return chicken(n - 6) || chicken(n - 9) || chicken(n - 20);
 	}
 
+	/**
+	 * A Pythagorean triplet is a set of three natural numbers, a, b and c, for
+	 * which a2 + b2 = c2.
+	 */
+	public static void pythagoreanTriplet(int[] array) {
+		HashMap<Integer, String> hashMap = new HashMap<Integer, String>();
+		for (int i = 0; i < array.length; i++) {
+			array[i] *= array[i];
+		}
+		Arrays.sort(array);
+		for (int a = 0; a < array.length - 1; a++) {
+			for (int b = a + 1; b < array.length; b++) {
+				hashMap.put(array[a] + array[b], array[a] + ", " + array[b]);
+			}
+		}
+		for (int i = 0; i < array.length; i++) {
+			if (hashMap.containsKey(array[i])) {
+				System.out.println(hashMap.get(array[i]) + ", " + array[i]);
+			}
+		}
+	}
+
+	/**
+	 * Say you have an array for which the ith element is the price of a given
+	 * stock on day i. Design an algorithm to find the maximum profit. You may
+	 * complete at most k transactions.
+	 */
+	public static int maxProfit(int k, int[] prices) {
+		if (prices.length < 2 || k <= 0) {
+			return 0;
+		}
+		int[] local = new int[k + 1];
+		int[] global = new int[k + 1];
+		for (int i = 0; i < prices.length - 1; i++) {
+			int diff = prices[i + 1] - prices[i];
+			for (int j = k; j >= 1; j--) {
+				local[j] = Math.max(global[j - 1] + Math.max(diff, 0), local[j]
+						+ diff);
+				global[j] = Math.max(local[j], global[j]);
+			}
+		}
+		return global[k];
+	}
+
+	/**
+	 * Trapping Rain Water: Given n non-negative integers representing an
+	 * elevation map where the width of each bar is 1, compute how much water it
+	 * is able to trap after raining. For example, Given
+	 * [0,1,0,2,1,0,1,3,2,1,2,1], return 6.
+	 * 
+	 * height[i] = Min(maxHeight(i's left), maxHeight(i's right)) - A[i]
+	 */
+	public int trap(int[] A) {
+		int res = 0;
+		int[] cache = new int[A.length];
+		int maxOnLeft = 0;
+		for (int i = 0; i < A.length; i++) {
+			cache[i] = maxOnLeft;
+			maxOnLeft = Math.max(maxOnLeft, A[i]);
+		}
+		int maxOnRight = 0;
+		for (int i = A.length - 1; i >= 0; i--) {
+			res += Math.max(Math.min(cache[i], maxOnRight) - A[i], 0);
+			maxOnRight = Math.max(maxOnRight, A[i]);
+		}
+		return res;
+	}
+
 	public static void main(String[] args) {
 		calculateDimensions(4);
 		System.out.println(isAnagram("abcd", "dcba"));
 		System.out.println(isAnagram("red", "red deer"));
+		pythagoreanTriplet(new int[] { 3, 4, 5, 6, 25 });
 	}
 }
