@@ -1,5 +1,9 @@
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
+import java.util.Stack;
 
 public class GoogleMockInterviews {
 
@@ -142,6 +146,40 @@ public class GoogleMockInterviews {
 			decimal += ')';
 		}
 		return real + "." + decimal;
+	}
+
+	/**
+	 * Merge Overlapping Intervals Given a set of time intervals in any order,
+	 * merge all overlapping intervals into one and output the result which
+	 * should have only mutually exclusive intervals. Let the intervals be
+	 * represented as pairs of integers for simplicity.
+	 */
+	public static ArrayList<Interval> mergeIntervals(
+			ArrayList<Interval> intervals) {
+		Collections.sort(intervals, new Comparator<Interval>() {
+			@Override
+			public int compare(Interval o1, Interval o2) {
+				return o1.start - o2.start;
+			}
+		});
+		Stack<Interval> stack = new Stack<Interval>();
+		stack.push(intervals.get(0));
+		for (int i = 1; i < intervals.size(); i++) {
+			Interval interval = intervals.get(i);
+			if (interval.start <= stack.peek().end) {
+				interval = merge((Interval) stack.pop(), interval);
+			}
+			stack.push(interval);
+		}
+		ArrayList<Interval> merged = new ArrayList<Interval>();
+		while (stack.size() > 0) {
+			merged.add(stack.pop());
+		}
+		return merged;
+	}
+
+	private static Interval merge(Interval first, Interval second) {
+		return new Interval(first.start, Math.max(first.end, second.end));
 	}
 
 	public static void main(String[] args) {
