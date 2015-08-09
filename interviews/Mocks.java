@@ -1,5 +1,6 @@
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Stack;
 
 public class Mocks {
 
@@ -155,6 +156,158 @@ public class Mocks {
 			maxOnRight = Math.max(maxOnRight, A[i]);
 		}
 		return rain;
+	}
+
+	/**
+	 * Plus One: Given a number represented as an array of digits, plus one to
+	 * the number.
+	 */
+	public int[] plusOne(int[] digits) {
+		if (digits.length == 0) {
+			return new int[] { 1 };
+		}
+		digits[digits.length - 1]++;
+		for (int i = digits.length - 1; i >= 0; i--) {
+			if (digits[i] == 10) {
+				digits[i - 1]++;
+				digits[i] = 0;
+			} else {
+				break;
+			}
+		}
+		if (digits[0] == 10) {
+			int[] ret = new int[digits.length + 1];
+			for (int i = 2; i < digits.length; i++) {
+				ret[i] = digits[i - 1];
+			}
+			ret[0] = 1;
+			ret[1] = 9;
+			digits = ret;
+		}
+		return digits;
+	}
+
+	/**
+	 * Implement strStr(). Returns a pointer to the first occurrence of needle
+	 * in haystack, or null if needle is not part of haystack.
+	 */
+	public String strStr(String haystack, String needle) {
+		if (haystack.length() < needle.length()) {
+			return null;
+		}
+		if (haystack.length() == 0) {
+			return haystack;
+		}
+		for (int i = 0; i <= haystack.length() - needle.length(); i++) {
+			if (haystack.substring(i, i + needle.length()).equals(needle)) {
+				return haystack.substring(i);
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * Pow(x, n): Implement pow(x, n). (count the value of x to the power of n).
+	 */
+	public double pow(double x, int n) {
+		if (n == 0) {
+			return 1;
+		} else if (n > 0) {
+			return x * pow(x, n - 1);
+		} else {
+			return 1 / (x * pow(x, Math.abs(n - 1)));
+		}
+	}
+
+	/**
+	 * Sqrt(x): Implement int sqrt(int x).
+	 */
+	public int sqrt(int x) {
+		if (x <= 0) {
+			return 0;
+		}
+		long l = 1;
+		long r = x;
+		while (l <= r) {
+			long m = l + (r - 1) / 2;
+			if (m * m == x) {
+				return (int) m;
+			}
+			if (m * m < x) {
+				if ((m + 1) * (m + 1) > x) {
+					return (int) m;
+				} else {
+					l = m + 1;
+				}
+			} else {
+				r = m - 1;
+			}
+		}
+		return 0;
+	}
+
+	/**
+	 * Unique Binary Search Trees: Given n, how many structurally unique BST's
+	 * (binary search trees) that store values 1...n?
+	 */
+	public int numTrees(int n) {
+		if (n <= 0)
+			return 1;
+		int sum = 0;
+		for (int i = 1; i <= n; i++) {
+			int numLeft = i - 1;
+			int numRight = n - i;
+			sum += numTrees(numLeft) * numTrees(numRight);
+		}
+		return sum;
+	}
+
+	/**
+	 * Swap Nodes in Pairs: Given a linked list, swap every two adjacent nodes
+	 * and return its head.
+	 * 
+	 * For example, given 1->2->3->4, you should return the list as 2->1->4->3.
+	 */
+	public ListNode swapPairs(ListNode head) {
+		ListNode pre = new ListNode(0);
+		pre.next = head;
+		ListNode c0 = pre;
+		while (c0.next != null && c0.next.next != null) {
+			ListNode c1 = c0.next;
+			ListNode c2 = c0.next.next;
+			c1.next = c2.next;
+			c2.next = c1;
+			c0.next = c2;
+			c0 = c1;
+		}
+		return pre.next;
+	}
+
+	/**
+	 * Valid Parenthesis: Given a string containing just the characters '(',
+	 * ')', '{', '}', '[' and ']', determine if the input string is valid. The
+	 * brackets must close in the correct order, "()" and "()[]{}" are all valid
+	 * but "(]" and "([)]" are not.
+	 */
+	public static boolean isValidParenthesis(String s) {
+		if (s == null || s.length() == 0) {
+			return false;
+		}
+		Stack<Character> stack = new Stack<Character>();
+		stack.push(s.charAt(0));
+		for (int i = 1; i < s.length(); i++) {
+			char c = s.charAt(i);
+			if (c == '(' || c == '[' || c == '{') {
+				stack.push(c);
+			} else if (!stack.isEmpty()
+					&& (stack.peek() == '(' && c == ')' || stack.peek() == '['
+							&& c == ']' || stack.peek() == '{' && c == '}')) {
+				stack.pop();
+			} else {
+				return false;
+			}
+		}
+		return stack.isEmpty();
 	}
 
 	public static void main(String[] args) {

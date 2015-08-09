@@ -101,32 +101,16 @@ public class Google {
 	}
 
 	/**
-	 * Plus One: Given a number represented as an array of digits, plus one to
-	 * the number.
+	 * Same Tree: Given two binary trees, write a function to check if they are
+	 * equal or not. Two binary trees are considered equal if they are
+	 * structurally identical and the nodes have the same value.
 	 */
-	public int[] plusOne(int[] digits) {
-		if (digits.length == 0) {
-			return new int[] { 1 };
+	public boolean isSameTree(TreeNode p, TreeNode q) {
+		if (p == null || q == null) {
+			return p == null && q == null;
 		}
-		digits[digits.length - 1]++;
-		for (int i = digits.length - 1; i >= 0; i--) {
-			if (digits[i] == 10) {
-				digits[i - 1]++;
-				digits[i] = 0;
-			} else {
-				break;
-			}
-		}
-		if (digits[0] == 10) {
-			int[] ret = new int[digits.length + 1];
-			for (int i = 2; i < digits.length; i++) {
-				ret[i] = digits[i - 1];
-			}
-			ret[0] = 1;
-			ret[1] = 9;
-			digits = ret;
-		}
-		return digits;
+		return p.val == q.val && isSameTree(p.left, q.left)
+				&& isSameTree(p.right, q.right);
 	}
 
 	public static void main(String[] args) {

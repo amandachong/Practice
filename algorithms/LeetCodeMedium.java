@@ -1,10 +1,10 @@
 public class LeetCodeMedium {
 
 	/**
-	 * Given a singly linked list, swap the list in pairs (reconnect the
-	 * pointers, not simply swap the values).
+	 * Swap Nodes in Pairs: Given a linked list, swap every two adjacent nodes
+	 * and return its head.
 	 * 
-	 * For example: Before: A -> B -> C -> D After: B -> A -> D -> C
+	 * For example, given 1->2->3->4, you should return the list as 2->1->4->3.
 	 */
 	public static ListNode swapPairs(ListNode node) {
 		if (node == null) {
@@ -33,19 +33,4 @@ public class LeetCodeMedium {
 			node = node.next;
 		}
 	}
-
-	public double myPow(double x, int n) {
-		if (n == 0) {
-			return 1;
-		} else if (n > 0) {
-			return x * myPow(x, n - 1);
-		} else {
-			return 1 / (x * myPow(x, Math.abs(n + 1)));
-		}
-	}
-
-	public static void main(String[] args) {
-
-	}
-
 }
