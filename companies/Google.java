@@ -44,12 +44,30 @@ public class Google {
 	}
 
 	/**
-	 * You are given with three sorted arrays (in ascending order), you are
-	 * required to find a triplet (one element from each array) such that
-	 * distance is minimum.
+	 * Given two linked lists, return the intersection of the two lists: i.e.
+	 * return a list containing only the elements that occur in both of the
+	 * input lists.
 	 */
-	public void minTriplet(int[] a1, int[] a2, int[] a3) {
-
+	public ListNode intersection(ListNode a, ListNode b) {
+		HashSet<Integer> hashSet = new HashSet<Integer>();
+		while (a != null) {
+			hashSet.add(a.data);
+			a = a.next;
+		}
+		ListNode intersectionHead = null;
+		ListNode intersection = intersectionHead;
+		while (b != null) {
+			if (hashSet.contains(b.data)) {
+				if (intersection == null) {
+					intersection = b;
+				} else {
+					intersection.next = b;
+					intersection = intersection.next;
+				}
+				b = b.next;
+			}
+		}
+		return intersectionHead;
 	}
 
 	/**
@@ -61,6 +79,25 @@ public class Google {
 		Arrays.sort(coins);
 
 		return numberOfCoins;
+	}
+
+	/**
+	 * You are given an array [a1 to an] and we have to construct another array
+	 * [b1 To bn] where bi = a1 * a2 * … * an / ai. You are allowed to use only
+	 * constant space and the time complexity is O(n). No divisions are allowed.
+	 */
+	public int[] productExceptSelf(int[] array) {
+		int[] result = new int[array.length];
+		result[result.length - 1] = 1;
+		for (int i = array.length - 2; i >= 0; i--) {
+			result[i] = result[i + 1] * array[i + 1];
+		}
+		int left = 1;
+		for (int i = 0; i < array.length; i++) {
+			result[i] *= left;
+			left *= array[i];
+		}
+		return result;
 	}
 
 	public static void main(String[] args) {
