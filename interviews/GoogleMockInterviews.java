@@ -1,0 +1,168 @@
+import java.util.Arrays;
+import java.util.HashMap;
+
+public class GoogleMockInterviews {
+
+	/**
+	 * Given some input and a keyboard, return how to navigate through the
+	 * keyboard to produce the input using left, right, up and left. Accessing
+	 * characters in the last row other than 'z' will cause a crash so avoid it.
+	 */
+	public static String keyboardDirections(String input, char[][] keyboard) {
+		String output = "";
+		int rows = keyboard[0].length;
+		int start = intValue('a');
+		int startX = start % rows;
+		int startY = start / rows;
+		for (int i = 0; i < input.length(); i++) {
+			int value = intValue(input.charAt(i));
+			int x = value % rows;
+			int y = value / rows;
+
+			if (input.charAt(i) == 'z') {
+				String letter = "L";
+				if (x - startX > 0) {
+					letter = "R";
+				}
+				for (int j = 0; j < Math.abs(x - startX); j++) {
+					output += letter;
+				}
+
+				letter = "U";
+				if (y - startY > 0) {
+					letter = "D";
+				}
+				for (int j = 0; j < Math.abs(y - startY); j++) {
+					output += letter;
+				}
+			} else {
+				String letter = "U";
+				if (y - startY > 0) {
+					letter = "D";
+				}
+				for (int j = 0; j < Math.abs(y - startY); j++) {
+					output += letter;
+				}
+
+				letter = "L";
+				if (x - startX > 0) {
+					letter = "R";
+				}
+				for (int j = 0; j < Math.abs(x - startX); j++) {
+					output += letter;
+				}
+			}
+			output += "_";
+			startX = x;
+			startY = y;
+		}
+		return output.substring(0, output.length() - 1);
+	}
+
+	private static int intValue(char c) {
+		return c - '0' - 49;
+	}
+
+	/**
+	 * Given an number x, find the next largest number y such that x < y and
+	 * uses the same digits as x.
+	 */
+	public static int[] nextLargestNumber(int[] array) {
+		if (array == null || array.length == 0) {
+			return array;
+		}
+		int index = 0;
+		for (int i = 1; i < array.length; i++) {
+			if (array[index] > array[i]) {
+				index = i;
+				break;
+			}
+			index++;
+		}
+
+		int nextBiggest = nextBiggest(array, index, array[index]);
+		int temp = array[index];
+		array[index] = array[nextBiggest];
+		array[nextBiggest] = temp;
+		int[] sorted = new int[index];
+		for (int i = 0; i < index; i++) {
+			sorted[i] = array[i];
+		}
+		Arrays.sort(sorted);
+		for (int i = 0; i < index; i++) {
+			array[i] = sorted[index - 1 - i];
+		}
+		return array;
+	}
+
+	public static int nextBiggest(int[] array, int index, int biggerThan) {
+		int min = Integer.MAX_VALUE;
+		int retIndex = 0;
+		for (int i = 0; i < index; i++) {
+			if (array[i] > biggerThan && array[i] < min) {
+				min = array[i];
+				retIndex = i;
+			}
+		}
+		return retIndex;
+	}
+
+	/**
+	 * Write a function which, given two integers (a numerator and a
+	 * denominator), prints the decimal representation of the rational number
+	 * "numerator/denominator".
+	 * 
+	 * Since all rational numbers end with a repeating section, print the
+	 * repeating section of digits inside parentheses; the decimal printout will
+	 * be/must be
+	 */
+	public static String divide(int a, int b) {
+		int real = a / b;
+		int r = a % b;
+		String decimal = "";
+		HashMap<Integer, Integer> remainders = new HashMap<Integer, Integer>();
+		int i = 0;
+		while (r != 0) {
+			if (!remainders.containsKey(r)) {
+				remainders.put(r, i);
+			} else {
+				decimal = decimal.substring(0, remainders.get(r))
+						+ '('
+						+ decimal
+								.substring(remainders.get(r), decimal.length());
+				break;
+			}
+			r *= 10;
+			int digit = r / b;
+			r = r % b;
+			decimal += digit;
+			i++;
+		}
+		if (r != 0) {
+			decimal += ')';
+		}
+		return real + "." + decimal;
+	}
+
+	public static void main(String[] args) {
+		char[][] keyboard = new char[][] { { 'a', 'b', 'c', 'd', 'e' },
+				{ 'f', 'g', 'h', 'i', 'j' }, { 'k', 'l', 'm', 'n', 'o' },
+				{ 'p', 'q', 'r', 's', 't' }, { 'u', 'v', 'w', 'x', 'y' },
+				{ 'z' } };
+		System.out.println(keyboardDirections("dog", keyboard));
+		System.out.println(keyboardDirections("zed", keyboard));
+		System.out.println(divide(1, 3));
+		System.out.println(divide(2, 4));
+		System.out.println(divide(22, 7));
+		int[] nextLargestNumber = nextLargestNumber(new int[] { 6, 7, 2, 8, 3 });
+		for (int i = nextLargestNumber.length - 1; i >= 0; i--) {
+			System.out.print(nextLargestNumber[i]);
+		}
+		System.out.println();
+		nextLargestNumber = nextLargestNumber(new int[] { 1, 2, 3, 4, 5, 6, 7,
+				8, 9, 4, 8, 7, 6, 5, 4, 3, 2, 1 });
+		for (int i = nextLargestNumber.length - 1; i >= 0; i--) {
+			System.out.print(nextLargestNumber[i]);
+		}
+	}
+}
