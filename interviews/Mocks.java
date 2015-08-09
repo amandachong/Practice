@@ -142,19 +142,19 @@ public class Mocks {
 	 * height[i] = Min(maxHeight(i's left), maxHeight(i's right)) - A[i]
 	 */
 	public int trap(int[] A) {
-		int res = 0;
-		int[] cache = new int[A.length];
+		int rain = 0;
+		int[] leftCache = new int[A.length];
 		int maxOnLeft = 0;
 		for (int i = 0; i < A.length; i++) {
-			cache[i] = maxOnLeft;
+			leftCache[i] = maxOnLeft;
 			maxOnLeft = Math.max(maxOnLeft, A[i]);
 		}
 		int maxOnRight = 0;
 		for (int i = A.length - 1; i >= 0; i--) {
-			res += Math.max(Math.min(cache[i], maxOnRight) - A[i], 0);
+			rain += Math.max(Math.min(leftCache[i], maxOnRight) - A[i], 0);
 			maxOnRight = Math.max(maxOnRight, A[i]);
 		}
-		return res;
+		return rain;
 	}
 
 	public static void main(String[] args) {
