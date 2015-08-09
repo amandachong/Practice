@@ -269,18 +269,20 @@ public class Mocks {
 	 * For example, given 1->2->3->4, you should return the list as 2->1->4->3.
 	 */
 	public ListNode swapPairs(ListNode head) {
-		ListNode pre = new ListNode(0);
-		pre.next = head;
-		ListNode c0 = pre;
-		while (c0.next != null && c0.next.next != null) {
-			ListNode c1 = c0.next;
-			ListNode c2 = c0.next.next;
-			c1.next = c2.next;
-			c2.next = c1;
-			c0.next = c2;
-			c0 = c1;
+		ListNode before = new ListNode(0);
+		before.next = head;
+		ListNode node = before;
+		while (node.next != null && node.next.next != null) {
+			ListNode first = node.next;
+			ListNode second = node.next.next;
+
+			first.next = second.next;
+			node.next = second;
+			second.next = first;
+			node = first;
 		}
-		return pre.next;
+		return before.next;
+
 	}
 
 	/**
@@ -310,10 +312,90 @@ public class Mocks {
 		return stack.isEmpty();
 	}
 
+	/**
+	 * Length of Last Word: Given a string s consists of upper/lower-case
+	 * alphabets and empty space characters ' ', return the length of last word
+	 * in the string. If the last word does not exist, return 0.
+	 * 
+	 * Note: A word is defined as a character sequence consists of non-space
+	 * characters only.
+	 * 
+	 * For example, Given s = "Hello World", return 5.
+	 */
+	public static int lengthOfLastWord(String s) {
+		if (s == null || s.length() == 0) {
+			return 0;
+		}
+		int front = -1;
+		int end = -1;
+		int index = s.length() - 1;
+		while (index >= 0) {
+			if (s.charAt(index) != ' ') {
+				end = index;
+				break;
+			} else {
+				index--;
+			}
+		}
+		if (index == -1) {
+			return 0;
+		}
+		while (index >= 0) {
+			if (s.charAt(index) != ' ') {
+				index--;
+			} else {
+				break;
+			}
+		}
+		front = index + 1;
+		return end - front + 1;
+	}
+
+	/**
+	 * Reverse Integer: Reverse digits of an integer.
+	 * 
+	 * Example1: x = 123, return 321
+	 * 
+	 * Example2: x = -123, return -321
+	 */
+	public static int reverse(int x) {
+		if (x == Integer.MIN_VALUE) {
+			return 0;
+		}
+		if (x == 0) {
+			return 0;
+		}
+		boolean isNegative = x < 0;
+		String s = String.valueOf(x);
+		String result = "";
+		if (isNegative) {
+			s = s.substring(1);
+		}
+		boolean started = false;
+		for (int i = s.length() - 1; i >= 0; i--) {
+			if (s.charAt(i) == '0') {
+				if (started) {
+					result += s.charAt(i);
+				}
+			} else {
+				result += s.charAt(i);
+				started = true;
+			}
+		}
+		if (isNegative) {
+			result = "-" + result;
+		}
+		return Integer.parseInt(result);
+	}
+
 	public static void main(String[] args) {
 		calculateDimensions(4);
 		System.out.println(isAnagram("abcd", "dcba"));
 		System.out.println(isAnagram("red", "red deer"));
 		pythagoreanTriplet(new int[] { 3, 4, 5, 6, 25 });
+		System.out.println(lengthOfLastWord("Hello World bam!!! "));
+		System.out.println(reverse(123));
+		System.out.println(reverse(-123));
+		System.out.println(reverse(-12300));
 	}
 }
