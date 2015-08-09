@@ -69,6 +69,25 @@ public class Mocks {
 		return false;
 	}
 
+	/**
+	 * McDonald's sells Chicken McNuggets in packages of 6, 9 or 20. Thus, it is
+	 * possible, for example, to buy exactly 15 McNuggets (with one package of 6
+	 * and a second package of 9), but it is not possible to buy exactly 16,
+	 * since no non-negative integer combination of 6's, 9's and 20's add up to
+	 * 16. Write a function that takes one argument, n, and returns True if it
+	 * is possible to buy a combination of 6, 9 and 20 pack units such that the
+	 * total number of Chicken McNuggets equals n, and otherwise returns False.
+	 */
+	public static boolean chicken(int n) {
+		if (n < 0) {
+			return false;
+		}
+		if (n % 6 == 0 || n % 9 == 0 || n % 20 == 0) {
+			return true;
+		}
+		return chicken(n - 6) || chicken(n - 9) || chicken(n - 20);
+	}
+
 	public static void main(String[] args) {
 		calculateDimensions(4);
 		System.out.println(isAnagram("abcd", "dcba"));

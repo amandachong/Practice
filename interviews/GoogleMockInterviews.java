@@ -154,8 +154,7 @@ public class GoogleMockInterviews {
 	 * should have only mutually exclusive intervals. Let the intervals be
 	 * represented as pairs of integers for simplicity.
 	 */
-	public static ArrayList<Interval> mergeIntervals(
-			ArrayList<Interval> intervals) {
+	public ArrayList<Interval> mergeIntervals(ArrayList<Interval> intervals) {
 		Collections.sort(intervals, new Comparator<Interval>() {
 			@Override
 			public int compare(Interval o1, Interval o2) {

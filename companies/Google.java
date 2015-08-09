@@ -44,6 +44,15 @@ public class Google {
 	}
 
 	/**
+	 * You are given with three sorted arrays (in ascending order), you are
+	 * required to find a triplet (one element from each array) such that
+	 * distance is minimum.
+	 */
+	public void minTriplet(int[] a1, int[] a2, int[] a3) {
+
+	}
+
+	/**
 	 * Given a set of coin denominators, find the minimum number of coins to
 	 * give a certain amount of change.
 	 */
