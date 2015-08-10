@@ -1,4 +1,5 @@
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.HashSet;
 
 public class Google {
@@ -123,5 +124,27 @@ public class Google {
 		for (int digit : product) {
 			System.out.print(digit + " ");
 		}
+	}
+
+	/**
+	 * You have an array of integers. Each integer in the array should be listed
+	 * three times in the array. Find the integer which does not comply to that
+	 * rule.
+	 */
+	public static int listed(int[] array, int n) {
+		HashMap<Integer, Integer> hashMap = new HashMap<Integer, Integer>();
+		for (int i = 0; i < array.length; i++) {
+			if (!hashMap.containsKey(array[i])) {
+				hashMap.put(array[i], 1);
+			} else {
+				hashMap.put(array[i], hashMap.get(array[i]) + 1);
+			}
+		}
+		for (int key : hashMap.keySet()) {
+			if (hashMap.get(key) != n) {
+				return key;
+			}
+		}
+		return -1;
 	}
 }
