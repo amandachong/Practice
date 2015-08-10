@@ -388,6 +388,130 @@ public class Mocks {
 		return Integer.parseInt(result);
 	}
 
+	/**
+	 * Sort Colors: Given an array with n objects colored red, white or blue,
+	 * sort them so that objects of the same color are adjacent, with the colors
+	 * in the order red, white and blue.
+	 * 
+	 * Here, we will use the integers 0, 1, and 2 to represent the color red,
+	 * white, and blue respectively. Note: You are not suppose to use the
+	 * library's sort function for this problem.
+	 */
+	public void sortColors(int[] array) {
+		int i = 0;
+		int j = array.length - 1;
+		int k = 0;
+		while (k <= j) {
+			if (array[k] == 0) {
+				swap(array, k, i);
+				i++;
+				k++;
+			} else if (array[k] == 2) {
+				swap(array, k, j);
+				j--;
+			} else {
+				k++;
+			}
+		}
+	}
+
+	private void swap(int[] array, int i, int j) {
+		int temp = array[j];
+		array[j] = array[i];
+		array[i] = temp;
+	}
+
+	/**
+	 * Subsets: Given a set of distinct integers, s, return all possible
+	 * subsets. Note: Elements in a subset must be in non-descending order. The
+	 * solution set must not contain duplicate subsets.
+	 */
+	public static void subsets(int[] s) {
+		int allMasks = (1 << s.length);
+		for (int i = 1; i < allMasks; i++) {
+			for (int j = 0; j < s.length; j++) {
+				if ((i & (1 << j)) > 0) { // The j-th element is used.
+					System.out.print((j + 1) + " ");
+				}
+			}
+			System.out.println();
+		}
+	}
+
+	/**
+	 * Implement atoi to convert a string to an integer.
+	 * 
+	 * Hint: Carefully consider all possible input cases. If you want a
+	 * challenge, please do not see below and ask yourself what are the possible
+	 * input cases.
+	 * 
+	 * Notes: It is intended for this problem to be specified vaguely (ie, no
+	 * given input specs). You are responsible to gather all the input
+	 * requirements up front.
+	 */
+	public static int atoi(String s) {
+		if (s == null || s.length() == 0) { // Cannot be null or have no length.
+			return 0;
+		}
+		if (!isNumber(s.substring(1))) {
+			return 0;
+		}
+		boolean isNegative = false;
+		char c = s.charAt(0);
+		if (isPrefixValid(c)) {
+			isNegative = c == '-';
+			if (c == '-' || c == '+') {
+				s = s.substring(1);
+			}
+		} else {
+			return 0;
+		}
+		int result = 0;
+		int decimals = 0; // What about decimal places?
+		for (int i = 0; i < s.length(); i++) {
+			c = s.charAt(i);
+			if (c == '.') {
+				decimals++;
+				if (decimals > 1) { // More than 1 decimal place is an error.
+					return 0;
+				}
+			}
+			result += (c - '0') * (int) Math.pow(10, i);
+		}
+		if (isNegative) {
+			result = 0 - result;
+		}
+		return result;
+	}
+
+	/**
+	 * Check if the chars of the string are valid numbers.
+	 */
+	private static boolean isNumber(String s) {
+		for (int i = 0; i < s.length(); i++) {
+			if (s.charAt(i) != '0' && s.charAt(i) != '1' && s.charAt(i) != '2'
+					&& s.charAt(i) != '3' && s.charAt(i) != '4'
+					&& s.charAt(i) != '5' && s.charAt(i) != '6'
+					&& s.charAt(i) != '7' && s.charAt(i) != '8'
+					&& s.charAt(i) != '9' && s.charAt(i) != '.') {
+				return false;
+			}
+		}
+		return true;
+	}
+
+	/**
+	 * Account for if the number has no positive or negative sign.
+	 */
+	private static boolean isPrefixValid(char c) {
+		if (c != '0' && c != '1' && c != '2' && c != '3' && c != '4'
+				&& c != '5' && c != '6' && c != '7' && c != '8' && c != '9'
+				&& c != '.' && c != '-' && c != '+') {
+			return false;
+		}
+		return true;
+	}
+
 	public static void main(String[] args) {
 		calculateDimensions(4);
 		System.out.println(isAnagram("abcd", "dcba"));
@@ -397,5 +521,7 @@ public class Mocks {
 		System.out.println(reverse(123));
 		System.out.println(reverse(-123));
 		System.out.println(reverse(-12300));
+		subsets(new int[] { 1, 2, 3, 4, 5 });
+		System.out.println(atoi("-123.0"));
 	}
 }
