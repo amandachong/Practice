@@ -3,6 +3,8 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Set;
 import java.util.Stack;
 
 public class GoogleMockInterviews {
@@ -179,6 +181,71 @@ public class GoogleMockInterviews {
 
 	private static Interval merge(Interval first, Interval second) {
 		return new Interval(first.start, Math.max(first.end, second.end));
+	}
+
+	public static ListNode intersection(ListNode first, ListNode second) {
+		if (first == null || second == null) {
+			return null;
+		}
+		int firstLength = 0;
+		Node node = first;
+		while (node != null) {
+			firstLength++;
+			node = node.next;
+		}
+		int secondLength = 0;
+		node = second;
+		while (node != null) {
+			secondLength++;
+			node = node.next;
+		}
+		int diff = secondLength - firstLength;
+		if (firstLength > secondLength) {
+			diff = firstLength - secondLength;
+			int i = 0;
+			while (i < diff) {
+				first = first.next;
+				i++;
+			}
+		} else {
+			diff = secondLength - firstLength;
+			int i = 0;
+			while (i < diff) {
+				second = second.next;
+				i++;
+			}
+		}
+		while (first != null && second != null) {
+			if (first.data == second.data) {
+				return first;
+			}
+		}
+		return null;
+	}
+
+	public static void search(String input, Set<String> dictionary,
+			Stack<String> words, List<List<String>> results) {
+
+		for (int i = 0; i < input.length(); i++) {
+			// Take the first i characters of the input and see if it is a word.
+			String substring = input.substring(0, i + 1);
+
+			if (dictionary.contains(substring)) {
+				// The beginning of the input matches a word, store on stack.
+				words.push(substring);
+
+				if (i == input.length() - 1) {
+					// There's no input left, copy the words stack to results.
+					results.add(new ArrayList<String>(words));
+				} else {
+					// There's more input left, search the remaining part
+					search(input.substring(i + 1), dictionary, words, results);
+				}
+
+				// Pop the matched word back off so we can move onto the next i.
+				words.pop();
+			}
+		}
 	}
 
 	public static void main(String[] args) {
