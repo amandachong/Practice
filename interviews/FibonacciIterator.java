@@ -6,7 +6,7 @@ public class FibonacciIterator implements Iterator<Integer> {
 	private int second;
 
 	public FibonacciIterator() {
-		first = 0;
+		first = -1;
 		second = 1;
 	}
 
