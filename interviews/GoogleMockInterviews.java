@@ -248,6 +248,17 @@ public class GoogleMockInterviews {
 		}
 	}
 
+	public static int countOverlap(QuadTreeNode first, QuadTreeNode second) {
+		if (first.children.isEmpty() || second.children.isEmpty()) {
+			return Math.min(first.blockPixels, second.blockPixels);
+		}
+		int count = 0;
+		for (int i = 0; i < first.children.size(); i++) {
+			count += countOverlap(first.children.get(i), second.children.get(i));
+		}
+		return count;
+	}
+
 	public static void main(String[] args) {
 		char[][] keyboard = new char[][] { { 'a', 'b', 'c', 'd', 'e' },
 				{ 'f', 'g', 'h', 'i', 'j' }, { 'k', 'l', 'm', 'n', 'o' },
