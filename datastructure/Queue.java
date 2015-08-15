@@ -20,9 +20,9 @@ public class Queue {
 		if (isEmpty()) {
 			return null;
 		}
-		Node ret = front;
+		Node node = new Node(front.value);
 		front = front.next;
-		return ret;
+		return node;
 	}
 
 	public boolean isEmpty() {

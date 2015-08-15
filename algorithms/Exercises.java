@@ -154,19 +154,19 @@ public class Exercises {
 			return nthLast--;
 		int i = nthLast(n.next, nthLast);
 		if (i == 0)
-			return n.data;
+			return n.value;
 		else
 			return i--;
 	}
 
 	public static int nthElement(Node n, int nth) {
 		if (nth == 0)
-			return n.data;
+			return n.value;
 		while (nth != 0) {
 			n = n.next;
 			nth--;
 		}
-		return n.data;
+		return n.value;
 	}
 
 	public static void printDuplicates(int[] array) {

@@ -8,17 +8,19 @@ public class Stack {
 	}
 
 	public void push(Node node) {
-		node.next = top;
-		top = node;
-		size++;
+		if (node != null) {
+			node.next = top;
+			top = node;
+			size++;
+		}
 	}
 
 	public Node pop() {
 		if (!isEmpty()) {
-			Node ret = top;
+			Node node = new Node(top.value);
 			top = top.next;
 			size--;
-			return ret;
+			return node;
 		}
 		return null;
 	}
@@ -27,8 +29,8 @@ public class Stack {
 		return top;
 	}
 
-	public int peek() {
-		return top.data;
+	public Node peek() {
+		return top;
 	}
 
 	public boolean isEmpty() {

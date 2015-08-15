@@ -9,7 +9,7 @@ public class LinkedLists {
 			if (table.contains(n)) {
 				return n;
 			}
-			table.put(n.data, n);
+			table.put(n.value, n);
 			n = n.next;
 		}
 		return null;
@@ -19,9 +19,9 @@ public class LinkedLists {
 		if (first == null && second == null) {
 			return null;
 		}
-		first.data = first.data + second.data + carry;
-		carry = first.data % 10;
-		first.data = first.data - carry;
+		first.value = first.value + second.value + carry;
+		carry = first.value % 10;
+		first.value = first.value - carry;
 
 		add(first.next, second.next, carry);
 
@@ -38,9 +38,9 @@ public class LinkedLists {
 				break;
 			value = carry;
 			if (n1 != null)
-				value += n1.data;
+				value += n1.value;
 			if (n2 != null)
-				value += n2.data;
+				value += n2.value;
 			if (value > 10) {
 				carry = 1;
 			}
@@ -81,12 +81,12 @@ public class LinkedLists {
 
 	public void deleteDuplicates(ListNode n) {
 		Hashtable<Integer, Boolean> table = new Hashtable<Integer, Boolean>();
-		table.put(n.data, true);
+		table.put(n.value, true);
 		while (n.next != null) {
-			if (table.containsKey(n.next.data))
+			if (table.containsKey(n.next.value))
 				n.next = n.next.next;
 			else {
-				table.put(n.next.data, true);
+				table.put(n.next.value, true);
 				n = n.next;
 			}
 			n.next = n.next.next;
@@ -140,11 +140,11 @@ public class LinkedLists {
 	 */
 	public ListNode deleteNode(ListNode head, int data) {
 		ListNode node = head;
-		if (node.data == data) {
+		if (node.value == data) {
 			return node.next;
 		}
 		while (node.next != null) {
-			if (node.next.data == data) {
+			if (node.next.value == data) {
 				node.next = node.next.next;
 				return head;
 			}

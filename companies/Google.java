@@ -52,13 +52,13 @@ public class Google {
 	public ListNode intersection(ListNode a, ListNode b) {
 		HashSet<Integer> hashSet = new HashSet<Integer>();
 		while (a != null) {
-			hashSet.add(a.data);
+			hashSet.add(a.value);
 			a = a.next;
 		}
 		ListNode intersectionHead = null;
 		ListNode intersection = intersectionHead;
 		while (b != null) {
-			if (hashSet.contains(b.data)) {
+			if (hashSet.contains(b.value)) {
 				if (intersection == null) {
 					intersection = b;
 				} else {

@@ -36,7 +36,7 @@ public class FrontBackQueue {
 			Node ret = front;
 			front = front.next;
 			front.previous = null;
-			return ret.data;
+			return ret.value;
 		}
 		return -1;
 	}
@@ -46,7 +46,7 @@ public class FrontBackQueue {
 			Node ret = back;
 			back = back.previous;
 			back.next = null;
-			return ret.data;
+			return ret.value;
 		}
 		return -1;
 	}

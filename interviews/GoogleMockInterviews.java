@@ -216,7 +216,7 @@ public class GoogleMockInterviews {
 			}
 		}
 		while (first != null && second != null) {
-			if (first.data == second.data) {
+			if (first.value == second.value) {
 				return first;
 			}
 		}

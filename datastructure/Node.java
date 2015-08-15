@@ -2,40 +2,29 @@ public class Node {
 
 	public Node next;
 	public Node previous;
-	public int data;
-	public String d;
-	boolean visited = false;
+	public int value;
+	public boolean visited;
 	private Node[] adjacentNodes;
 	public int distance;
-	Node min;
+	public Node min;
 
 	public Node() {
 	}
 
-	public Node(int data) {
-		this.data = data;
-	}
-
-	public Node(String d) {
-		this.d = d;
-	}
-
-	public Node add(Node node) {
-		next = node;
-		return next;
+	public Node(int value) {
+		this.value = value;
 	}
 
 	public int getValue() {
-		return data;
+		return value;
 	}
 
-	public void appendToTail(int d) {
-		Node nodeForTail = new Node(d);
-		Node n = this;
-		while (n.next != null) {
-			n = n.next;
+	public void appendToTail(int value) {
+		Node node = this;
+		while (node.next != null) {
+			node = node.next;
 		}
-		n.next = nodeForTail;
+		node.next = new Node(value);
 	}
 
 	public Node[] getAdjacentNodes() {
@@ -44,12 +33,11 @@ public class Node {
 
 	public static Node deleteNode(Node head, int data) {
 		Node node = head;
-		if (node.data == data) {
+		if (node.value == data) {
 			return head.next;
 		}
-
 		while (node.next != null) {
-			if (node.next.data == data) {
+			if (node.next.value == data) {
 				node.next = node.next.next;
 				return head;
 			}

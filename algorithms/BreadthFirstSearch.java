@@ -21,7 +21,7 @@ public class BreadthFirstSearch {
 	}
 
 	public void visit(Node node) {
-		System.out.println(node.data);
+		System.out.println(node.value);
 	}
 
 	public void BFS(Node root) {

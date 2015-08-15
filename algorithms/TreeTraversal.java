@@ -61,7 +61,7 @@ public class TreeTraversal {
 		}
 		while (stack.size() > 0) {
 			TreeNode node = (TreeNode) stack.pop();
-			System.out.println(node.data);
+			System.out.println(node.value);
 			Node child = node.right;
 			if (child != null) {
 				stack.push(child);

@@ -41,10 +41,10 @@ public class PriorityQueue {
 		int s = i;
 		int left = i * 2 + 1;
 		int right = left + 1;
-		if (left < n && heap[left].data < heap[s].data) {
+		if (left < n && heap[left].value < heap[s].value) {
 			s = left;
 		}
-		if (right < n && heap[right].data < heap[s].data) {
+		if (right < n && heap[right].value < heap[s].value) {
 			s = right;
 		}
 		if (s != 1) {
@@ -60,7 +60,7 @@ public class PriorityQueue {
 			return;
 		}
 		int p = (i - 1) / 2;
-		if (heap[i].data < heap[p].data) {
+		if (heap[i].value < heap[p].value) {
 			Node temp = heap[i];
 			heap[i] = heap[p];
 			heap[p] = temp;

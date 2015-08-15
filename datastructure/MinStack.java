@@ -14,7 +14,7 @@ public class MinStack {
 			Node temp = top;
 			top = node;
 			top.next = temp;
-			top.min = temp.data < node.data ? temp : top;
+			top.min = temp.value < node.value ? temp : top;
 		}
 	}
 

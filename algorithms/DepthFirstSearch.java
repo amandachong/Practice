@@ -14,6 +14,6 @@ public class DepthFirstSearch {
 	}
 
 	public void visit(Node node) {
-		System.out.println(node.data);
+		System.out.println(node.value);
 	}
 }

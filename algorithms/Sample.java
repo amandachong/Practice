@@ -168,7 +168,7 @@ public class Sample {
 				node = node.left;
 			} else {
 				node = (TreeNode) stack.pop();
-				System.out.println(node.data);
+				System.out.println(node.value);
 				node = node.right;
 			}
 		}

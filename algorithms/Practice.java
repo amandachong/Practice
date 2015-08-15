@@ -67,7 +67,7 @@ public class Practice {
 		}
 		Node circle = new Node();
 		circle.previous = treeToCircle(tree.left);
-		circle.data = tree.val;
+		circle.value = tree.val;
 		circle.next = treeToCircle(tree.right);
 		return circle;
 	}
