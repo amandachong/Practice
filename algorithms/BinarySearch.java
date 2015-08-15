@@ -33,11 +33,11 @@ public class BinarySearch {
 
 	public TreeNode binarySearch(TreeNode root, int value) {
 		while (root != null) {
-			if (root.val == value) {
+			if (root.value == value) {
 				break;
-			} else if (value < root.val) {
+			} else if (value < root.value) {
 				root = root.left;
-			} else if (value > root.val) {
+			} else if (value > root.value) {
 				root = root.right;
 			}
 		}

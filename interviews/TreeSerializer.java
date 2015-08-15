@@ -7,7 +7,7 @@ public class TreeSerializer {
 			out += DELIMETER_TOKEN;
 			return out;
 		} else {
-			out += root.val;
+			out += root.value;
 		}
 		out = serialize(root.left, out);
 		out = serialize(root.right, out);
@@ -19,7 +19,7 @@ public class TreeSerializer {
 		if (data == DELIMETER_TOKEN) {
 			return null;
 		} else {
-			root.val = data;
+			root.value = data;
 		}
 		root.left = deserialize(root.left, in);
 		root.right = deserialize(root.right, in);

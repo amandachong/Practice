@@ -1,15 +1,15 @@
 public class TreeNode extends Node {
 
-	public int val;
+	public int value;
 	public TreeNode left;
 	public TreeNode right;
 	public int height;
 
 	public TreeNode(int x) {
-		val = x;
+		value = x;
 	}
 
 	public int getValue() {
-		return val;
+		return value;
 	}
 }

@@ -33,11 +33,11 @@ public class LeetCodeEasy {
 		if (root == null) {
 			return false;
 		}
-		if (root.val == sum && root.left == null && root.right == null) {
+		if (root.value == sum && root.left == null && root.right == null) {
 			return true;
 		}
-		return hasPathSum(root.left, sum - root.val)
-				|| hasPathSum(root.right, sum - root.val);
+		return hasPathSum(root.left, sum - root.value)
+				|| hasPathSum(root.right, sum - root.value);
 	}
 
 	/**
@@ -50,10 +50,10 @@ public class LeetCodeEasy {
 		if (root == null || p == null || q == null) {
 			return null;
 		}
-		if (p.val < root.val && q.val < root.val) {
+		if (p.value < root.value && q.value < root.value) {
 			return lowestCommonAncestor(root.left, p, q);
 		}
-		if (p.val > root.val && q.val > root.val) {
+		if (p.value > root.value && q.value > root.value) {
 			return lowestCommonAncestor(root.right, p, q);
 		}
 		return root;
@@ -119,33 +119,6 @@ public class LeetCodeEasy {
 			result.next = mergeTwoLists(l1, l2.next);
 		}
 		return result;
-	}
-
-	/**
-	 * LeetCode - Plus One: Given a non-negative number represented as an array
-	 * of digits, plus one to the number.
-	 */
-	public int[] plusOne(int[] digits) {
-		int remainder = 1;
-		for (int i = digits.length - 1; i >= 0; i--) {
-			digits[i] += remainder;
-			remainder = 0;
-			if (digits[i] > 9) {
-				digits[i] = 0;
-				remainder = 1;
-			} else {
-				break;
-			}
-		}
-		if (remainder != 0) {
-			int[] newDigits = new int[digits.length + 1];
-			for (int i = 0; i < digits.length; i++) {
-				newDigits[i + 1] = digits[i];
-			}
-			newDigits[0] = remainder;
-			return newDigits;
-		}
-		return digits;
 	}
 
 	/**
@@ -269,7 +242,7 @@ public class LeetCodeEasy {
 		} else if (l == null || r == null) {
 			return false;
 		}
-		if (l.val != r.val) {
+		if (l.value != r.value) {
 			return false;
 		}
 		return isSymmetric(l.left, r.right) && isSymmetric(l.right, r.left);

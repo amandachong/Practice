@@ -110,7 +110,7 @@ public class Google {
 		if (p == null || q == null) {
 			return p == null && q == null;
 		}
-		return p.val == q.val && isSameTree(p.left, q.left)
+		return p.value == q.value && isSameTree(p.left, q.left)
 				&& isSameTree(p.right, q.right);
 	}
 
