@@ -235,11 +235,24 @@ public class MathProblems {
 		}
 	}
 
+	public static void printAllFactors(int n) {
+		int i = 1;
+		int range = n;
+		while (i <= range) {
+			if (n % i == 0) {
+				System.out.println(i + "," + n / i);
+				range = n / i;
+			}
+			i++;
+		}
+	}
+
 	public static void main(String[] args) {
 		System.out.println(reverse(123));
 		System.out.println(reverse(-123));
 		System.out.println(multiplesOf3And5());
 		System.out.println(evenFibonacci());
 		System.out.println(smallestMultiple());
+		printAllFactors(100);
 	}
 }

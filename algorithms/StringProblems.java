@@ -51,6 +51,15 @@ public class StringProblems {
 		return true;
 	}
 
+	public static boolean isPalindrome(String s) {
+		for (int i = 0; i < s.length() / 2; i++) {
+			if (s.charAt(i) != s.charAt(s.length() - 1 - i)) {
+				return false;
+			}
+		}
+		return true;
+	}
+
 	public static String reverseInPlace(String s) {
 		char[] cArray = s.toCharArray();
 		for (int i = 0, j = s.length() - 1; i < s.length() / 2; i++, j--) {
@@ -68,5 +77,8 @@ public class StringProblems {
 	public static void main(String[] args) {
 		String s = "Hi, I'm Amanda";
 		System.out.println(reverseInPlace(s));
+		System.out.println(isPalindrome("moooooooom"));
+		System.out.println(isPalindrome("moooojoooom"));
+		System.out.println(isPalindrome("nooon"));
 	}
 }

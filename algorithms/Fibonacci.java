@@ -75,4 +75,22 @@ public class Fibonacci {
 		}
 		return current;
 	}
+
+	public int iterativeFib(int n) {
+		if (n == 0) {
+			return 0;
+		}
+		if (n <= 2) {
+			return 1;
+		}
+		int result = 0;
+		int prev = 1;
+		int prevprev = 0;
+		for (int i = 2; i < n; i++) {
+			result = prev + prevprev;
+			prevprev = prev;
+			prev = result;
+		}
+		return result;
+	}
 }

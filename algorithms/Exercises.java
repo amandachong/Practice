@@ -4,12 +4,8 @@ import java.util.Arrays;
 public class Exercises {
 	public static void main(String[] args) {
 		int[] a = new int[] { 1, 0, 2, 0, 0, 3, 4 };
-		System.out.println(isPalindrome("moooooooom"));
-		System.out.println(isPalindrome("moooojoooom"));
 
 		System.out.println(nonZeroElements(a));
-
-		System.out.println(isPalindrome("nooon"));
 
 		multiplicationTable(12);
 
@@ -23,15 +19,12 @@ public class Exercises {
 
 		largest(intArray);
 
-		System.out.println(binarySearch(intArray, 50, 0, 2));
-
 		printDuplicates(intArray);
 		// nthElement(new Node(1), 2);
 
 		// nthLast(new Node(1), 3);
 
 		System.out.println(stringToInt("-1a23"));
-		printAllFactors(100);
 	}
 
 	public Node reverse(Node node) {
@@ -89,27 +82,6 @@ public class Exercises {
 			}
 		}
 		return maxSum;
-	}
-
-	public static boolean isPalindrome(String s) {
-		for (int i = 0; i < s.length() / 2; i++) {
-			if (s.charAt(i) != s.charAt(s.length() - 1 - i)) {
-				return false;
-			}
-		}
-		return true;
-	}
-
-	public static void printAllFactors(int n) {
-		int i = 1;
-		int range = n;
-		while (i <= range) {
-			if (n % i == 0) {
-				System.out.println(i + "," + n / i);
-				range = n / i;
-			}
-			i++;
-		}
 	}
 
 	public static int stringToInt(String s) {
@@ -178,18 +150,6 @@ public class Exercises {
 		}
 	}
 
-	public static int binarySearch(int[] array, int key, int i, int j) {
-		if (j < i)
-			return -1;
-		int m = (i + j) / 2;
-		if (key < array[m])
-			return binarySearch(array, key, i, m - 1);
-		else if (key > array[m])
-			return binarySearch(array, key, m + 1, j);
-		else
-			return m;
-	}
-
 	public static void largest(int[] array) {
 		int max = Integer.MIN_VALUE;
 		for (int i = 0; i < array.length; i++) {
@@ -213,24 +173,6 @@ public class Exercises {
 			}
 			System.out.println();
 		}
-	}
-
-	public int iterativeFib(int n) {
-		if (n == 0) {
-			return 0;
-		}
-		if (n <= 2) {
-			return 1;
-		}
-		int result = 0;
-		int prev = 1;
-		int prevprev = 0;
-		for (int i = 2; i < n; i++) {
-			result = prev + prevprev;
-			prevprev = prev;
-			prev = result;
-		}
-		return result;
 	}
 
 	public static int[] nonZeroElements(int[] array) {
