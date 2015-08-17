@@ -71,28 +71,6 @@ public class LinkedLists {
 		return n2;
 	}
 
-	public boolean deleteNode(ListNode n) {
-		if (n == null || n.next == null) {
-			return false;
-		}
-		n = n.next;
-		return true;
-	}
-
-	public void deleteDuplicates(ListNode n) {
-		Hashtable<Integer, Boolean> table = new Hashtable<Integer, Boolean>();
-		table.put(n.value, true);
-		while (n.next != null) {
-			if (table.containsKey(n.next.value))
-				n.next = n.next.next;
-			else {
-				table.put(n.next.value, true);
-				n = n.next;
-			}
-			n.next = n.next.next;
-		}
-	}
-
 	public ListNode nthToLast(ListNode node, int n) {
 		if (node == null || n < 1) {
 			return null;
@@ -175,4 +153,166 @@ public class LinkedLists {
 		return true;
 	}
 
+	/**
+	 * LeetCode - Reverse Linked List: Reverse a singly linked list.
+	 */
+	private ListNode reverseList(ListNode head) {
+		if (head == null) {
+			return null;
+		}
+		ListNode previous = null;
+		ListNode current = head;
+		while (current != null) {
+			ListNode next = current.next;
+			current.next = previous;
+			previous = current;
+			current = next;
+		}
+		head = previous;
+		return head;
+	}
+
+	public boolean isPowerOfTwo(int n) {
+		return ((n & (n - 1)) == 0 && n > 0);
+	}
+
+	/**
+	 * LeetCode - Merge two sorted linked lists and return it as a new list. The
+	 * new list should be made by splicing together the nodes of the first two
+	 * lists.
+	 */
+
+	public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
+		ListNode result;
+		if (l1 == null) {
+			return l2;
+		} else if (l2 == null) {
+			return l1;
+		}
+		if (l1.val <= l2.val) {
+			result = l1;
+			l1.next = mergeTwoLists(l1.next, l2);
+		} else {
+			result = l2;
+			result.next = mergeTwoLists(l1, l2.next);
+		}
+		return result;
+	}
+
+	/**
+	 * LeetCode - Palindrome Linked List: Given a singly linked list, determine
+	 * if it is a palindrome.
+	 */
+	public boolean isPalindrome(ListNode head) {
+		ListNode reverse = reverseList(head);
+		while (head != null) {
+			if (head.val != reverse.val) {
+				return false;
+			}
+			head = head.next;
+			reverse = reverse.next;
+		}
+		return true;
+	}
+
+	/**
+	 * LeetCode - Intersection of Two LinkedLists: Write a program to find the
+	 * node at which the intersection of two singly linked lists begins.
+	 */
+	public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
+		HashSet<ListNode> hashSet = new HashSet<ListNode>();
+		ListNode head = headA;
+		while (head != null) {
+			hashSet.add(head);
+			head = head.next;
+		}
+		head = headB;
+		while (head != null) {
+			if (hashSet.contains(head)) {
+				return head;
+			}
+			hashSet.add(head);
+			head = head.next;
+		}
+		return null;
+	}
+
+	/**
+	 * LeetCode - Delete Node in a Linked List: Write a function to delete a
+	 * node (except the tail) in a singly linked list, given only access to that
+	 * node.
+	 */
+	public void deleteNode(ListNode node) {
+		if (node == null) {
+			return;
+		}
+		node.val = node.next.val;
+		node = node.next;
+	}
+
+	/**
+	 * LeetCode - Remove Linked List Elements: Remove all elements from a linked
+	 * list of integers that have value val.
+	 */
+	public ListNode removeElements(ListNode head, int val) {
+		if (head == null) {
+			return null;
+		}
+		if (head.val == val) {
+			return removeElements(head.next, val);
+		}
+		head.next = removeElements(head.next, val);
+		return head;
+	}
+
+	/**
+	 * LeetCode - Remove Duplicates from Sorted List: Given a sorted linked
+	 * list, delete all duplicates such that each element appear only once.
+	 */
+	public ListNode deleteDuplicates(ListNode head) {
+		ListNode node = head;
+		while (node != null) {
+			ListNode next = node.next;
+			if (next != null && node.val == next.val) {
+				node.next = next.next;
+			} else {
+				node = next;
+			}
+		}
+		return head;
+	}
+
+	/**
+	 * Swap Nodes in Pairs: Given a linked list, swap every two adjacent nodes
+	 * and return its head.
+	 * 
+	 * For example, given 1->2->3->4, you should return the list as 2->1->4->3.
+	 */
+	public static ListNode swapPairs(ListNode node) {
+		if (node == null) {
+			return node;
+		}
+		if (node.next == null) {
+			return node;
+		}
+		ListNode ret = node.next;
+		ListNode nextNext = node.next.next;
+		ret.next = node;
+		node.next = swapPairs(nextNext);
+		return ret;
+	}
+
+	public static void testSwapPairs() {
+		ListNode a = new ListNode("A");
+		a.add(new ListNode("B")).add(new ListNode("C")).add(new ListNode("D"))
+				.add(new ListNode("E"));
+		printNodes(swapPairs(a));
+	}
+
+	public static void printNodes(ListNode node) {
+		while (node != null) {
+			System.out.println(node.val);
+			node = node.next;
+		}
+	}
 }

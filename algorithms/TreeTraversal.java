@@ -139,10 +139,54 @@ public class TreeTraversal {
 		return null;
 	}
 
+	/**
+	 * LeetCode - Minimum Depth of Binary Tree: Given a binary tree, find its
+	 * minimum depth.
+	 */
+	public int minDepth(TreeNode root) {
+		if (root == null) {
+			return 0;
+		}
+		if (root.left == null) {
+			return 1 + minDepth(root.right);
+		}
+		if (root.right == null) {
+			return 1 + minDepth(root.left);
+		}
+		return 1 + Math.min(minDepth(root.left), minDepth(root.right));
+	}
+
+	/**
+	 * LeetCode - Maximum Depth of Binary Tree: Given a binary tree, find its
+	 * maximum depth.
+	 */
 	public int maxDepth(TreeNode root) {
 		if (root == null) {
 			return 0;
 		}
-		return Math.max(maxDepth(root.left), maxDepth(root.right)) + 1;
+		return 1 + Math.max(maxDepth(root.left), maxDepth(root.right));
+	}
+
+	/**
+	 * LeetCode - Symmetric Tree: Given a binary tree, check whether it is a
+	 * mirror of itself (ie, symmetric around its center).
+	 */
+	public boolean isSymmetric(TreeNode root) {
+		if (root == null) {
+			return true;
+		}
+		return isSymmetric(root.left, root.right);
+	}
+
+	private boolean isSymmetric(TreeNode l, TreeNode r) {
+		if (l == null && r == null) {
+			return true;
+		} else if (l == null || r == null) {
+			return false;
+		}
+		if (l.value != r.value) {
+			return false;
+		}
+		return isSymmetric(l.left, r.right) && isSymmetric(l.right, r.left);
 	}
 }

@@ -3,28 +3,6 @@ import java.util.HashSet;
 public class LeetCodeEasy {
 
 	/**
-	 * LeetCode - Intersection of Two LinkedLists: Write a program to find the
-	 * node at which the intersection of two singly linked lists begins.
-	 */
-	public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
-		HashSet<ListNode> hashSet = new HashSet<ListNode>();
-		ListNode head = headA;
-		while (head != null) {
-			hashSet.add(head);
-			head = head.next;
-		}
-		head = headB;
-		while (head != null) {
-			if (hashSet.contains(head)) {
-				return head;
-			}
-			hashSet.add(head);
-			head = head.next;
-		}
-		return null;
-	}
-
-	/**
 	 * LeetCode – Path Sum: Given a binary tree and a sum, determine if the tree
 	 * has a root-to-leaf path such that adding up all the values along the path
 	 * equals the given sum.
@@ -38,102 +16,6 @@ public class LeetCodeEasy {
 		}
 		return hasPathSum(root.left, sum - root.value)
 				|| hasPathSum(root.right, sum - root.value);
-	}
-
-	/**
-	 * LeetCode - Lowest Common Ancestor of a Binary Search Tree: Given a binary
-	 * search tree (BST), find the lowest common ancestor (LCA) of two given
-	 * nodes in the BST.
-	 */
-	public static TreeNode lowestCommonAncestor(TreeNode root, TreeNode p,
-			TreeNode q) {
-		if (root == null || p == null || q == null) {
-			return null;
-		}
-		if (p.value < root.value && q.value < root.value) {
-			return lowestCommonAncestor(root.left, p, q);
-		}
-		if (p.value > root.value && q.value > root.value) {
-			return lowestCommonAncestor(root.right, p, q);
-		}
-		return root;
-	}
-
-	/**
-	 * LeetCode - Palindrome Linked List: Given a singly linked list, determine
-	 * if it is a palindrome.
-	 */
-	public boolean isPalindrome(ListNode head) {
-		ListNode reverse = reverseList(head);
-		while (head != null) {
-			if (head.val != reverse.val) {
-				return false;
-			}
-			head = head.next;
-			reverse = reverse.next;
-		}
-		return true;
-	}
-
-	/**
-	 * LeetCode - Reverse Linked List: Reverse a singly linked list.
-	 */
-	private ListNode reverseList(ListNode head) {
-		if (head == null) {
-			return null;
-		}
-		ListNode previous = null;
-		ListNode current = head;
-		while (current != null) {
-			ListNode next = current.next;
-			current.next = previous;
-			previous = current;
-			current = next;
-		}
-		head = previous;
-		return head;
-	}
-
-	public boolean isPowerOfTwo(int n) {
-		return ((n & (n - 1)) == 0 && n > 0);
-	}
-
-	/**
-	 * LeetCode - Merge two sorted linked lists and return it as a new list. The
-	 * new list should be made by splicing together the nodes of the first two
-	 * lists.
-	 */
-
-	public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
-		ListNode result;
-		if (l1 == null) {
-			return l2;
-		} else if (l2 == null) {
-			return l1;
-		}
-		if (l1.val <= l2.val) {
-			result = l1;
-			l1.next = mergeTwoLists(l1.next, l2);
-		} else {
-			result = l2;
-			result.next = mergeTwoLists(l1, l2.next);
-		}
-		return result;
-	}
-
-	/**
-	 * LeetCode - Remove Linked List Elements: Remove all elements from a linked
-	 * list of integers that have value val.
-	 */
-	public ListNode removeElements(ListNode head, int val) {
-		if (head == null) {
-			return null;
-		}
-		if (head.val == val) {
-			return removeElements(head.next, val);
-		}
-		head.next = removeElements(head.next, val);
-		return head;
 	}
 
 	/**
@@ -151,19 +33,6 @@ public class LeetCodeEasy {
 			hashSet.add(num);
 		}
 		return false;
-	}
-
-	/**
-	 * LeetCode - Delete Node in a Linked List: Write a function to delete a
-	 * node (except the tail) in a singly linked list, given only access to that
-	 * node.
-	 */
-	public void deleteNode(ListNode node) {
-		if (node == null) {
-			return;
-		}
-		node.val = node.next.val;
-		node.next = node.next.next;
 	}
 
 	/**
@@ -212,74 +81,6 @@ public class LeetCodeEasy {
 		if (result < Integer.MIN_VALUE)
 			return Integer.MIN_VALUE;
 		return (int) result;
-	}
-
-	/**
-	 * LeetCode - Maximum Depth of Binary Tree: Given a binary tree, find its
-	 * maximum depth.
-	 */
-	public int maxDepth(TreeNode root) {
-		if (root == null) {
-			return 0;
-		}
-		return 1 + Math.max(maxDepth(root.left), maxDepth(root.right));
-	}
-
-	/**
-	 * LeetCode - Symmetric Tree: Given a binary tree, check whether it is a
-	 * mirror of itself (ie, symmetric around its center).
-	 */
-	public boolean isSymmetric(TreeNode root) {
-		if (root == null) {
-			return true;
-		}
-		return isSymmetric(root.left, root.right);
-	}
-
-	private boolean isSymmetric(TreeNode l, TreeNode r) {
-		if (l == null && r == null) {
-			return true;
-		} else if (l == null || r == null) {
-			return false;
-		}
-		if (l.value != r.value) {
-			return false;
-		}
-		return isSymmetric(l.left, r.right) && isSymmetric(l.right, r.left);
-	}
-
-	/**
-	 * LeetCode - Remove Duplicates from Sorted List: Given a sorted linked
-	 * list, delete all duplicates such that each element appear only once.
-	 */
-	public ListNode deleteDuplicates(ListNode head) {
-		ListNode node = head;
-		while (node != null) {
-			ListNode next = node.next;
-			if (next != null && node.val == next.val) {
-				node.next = next.next;
-			} else {
-				node = next;
-			}
-		}
-		return head;
-	}
-
-	/**
-	 * LeetCode - Minimum Depth of Binary Tree: Given a binary tree, find its
-	 * minimum depth.
-	 */
-	public int minDepth(TreeNode root) {
-		if (root == null) {
-			return 0;
-		}
-		if (root.left == null) {
-			return 1 + minDepth(root.right);
-		}
-		if (root.right == null) {
-			return 1 + minDepth(root.left);
-		}
-		return 1 + Math.min(minDepth(root.left), minDepth(root.right));
 	}
 
 	/**

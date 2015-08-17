@@ -12,15 +12,14 @@ public class Vertex extends Node {
 	boolean visited = false;
 	Vertex previous;
 
-	public Vertex(Vertex up, Vertex down, Vertex left,
-			Vertex right) {
+	public Vertex() {
+	}
+
+	public Vertex(Vertex up, Vertex down, Vertex left, Vertex right) {
 		this.up = up;
 		this.down = down;
 		this.left = left;
 		this.right = right;
-	}
-
-	public Vertex() {
 	}
 
 	public ArrayList<Vertex> getAdjacentVertices() {
