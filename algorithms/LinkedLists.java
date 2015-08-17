@@ -15,6 +15,58 @@ public class LinkedLists {
 		return null;
 	}
 
+	/**
+	 * Reverse a linked list
+	 * 
+	 * Input: head -> 2 -> 3 -> 1
+	 * 
+	 * Output: 1 -> 3 -> 2 -> head
+	 */
+	public static Node reverseLinkedList(Node head, Node node) {
+		if (head == null) {
+			return null;
+		}
+		if (node == null) {
+			return head;
+		}
+		Node n1 = head;
+		Node n2 = node;
+		Node temp = n2.next;
+		n2.next = n1;
+		n1.next = temp;
+		return reverseLinkedList(n2, n1.next);
+	}
+
+	public Node findMiddle(Node node) {
+		Node middle = node;
+		Node last = node;
+		while (last != null) {
+			last = last.next.next;
+			middle = middle.next;
+		}
+		return middle;
+	}
+
+	public static int nthLast(Node n, int nthLast) {
+		if (n == null)
+			return nthLast--;
+		int i = nthLast(n.next, nthLast);
+		if (i == 0)
+			return n.value;
+		else
+			return i--;
+	}
+
+	public static int nthElement(Node n, int nth) {
+		if (nth == 0)
+			return n.value;
+		while (nth != 0) {
+			n = n.next;
+			nth--;
+		}
+		return n.value;
+	}
+
 	public ListNode add(ListNode first, ListNode second, int carry) {
 		if (first == null && second == null) {
 			return null;
@@ -266,6 +318,26 @@ public class LinkedLists {
 	}
 
 	/**
+	 * Convert a binary tree into a In Order traversal circular list
+	 * re-purposing the node's pointers Left & Right as Previous and Next
+	 * respectively.
+	 * 
+	 * Hint: A single node Left & Right points to itself.
+	 * 
+	 * Note: This is not a binary search tree.
+	 */
+	public static Node treeToCircle(TreeNode tree) {
+		if (tree == null) {
+			return null;
+		}
+		Node circle = new Node();
+		circle.previous = treeToCircle(tree.left);
+		circle.value = tree.value;
+		circle.next = treeToCircle(tree.right);
+		return circle;
+	}
+
+	/**
 	 * LeetCode - Remove Duplicates from Sorted List: Given a sorted linked
 	 * list, delete all duplicates such that each element appear only once.
 	 */
@@ -307,6 +379,20 @@ public class LinkedLists {
 		a.add(new ListNode("B")).add(new ListNode("C")).add(new ListNode("D"))
 				.add(new ListNode("E"));
 		printNodes(swapPairs(a));
+	}
+
+	public Node reverse(Node node) {
+		Node root = node;
+		Node next = node.next;
+		Node nextNext = node.next.next;
+		while (next != null) {
+			next.next = root;
+			root.next = nextNext;
+			root = next;
+			next = next.next;
+			nextNext = nextNext.next;
+		}
+		return root;
 	}
 
 	public static void printNodes(ListNode node) {

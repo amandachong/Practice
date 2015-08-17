@@ -26,4 +26,23 @@ public class Mergesort {
 		for (int k = lo; k <= hi; k++)
 			array[k] = temp[k];
 	}
+
+	/**
+	 * Another: Merge two sorted lists.
+	 */
+	public void merge(int[] a, int n, int[] b, int m) {
+		while (n > 0 && m > 0) {
+			if (a[n - 1] > b[m - 1]) {
+				a[n + m - 1] = a[n - 1];
+				n--;
+			} else {
+				a[n + m - 1] = b[m - 1];
+				m--;
+			}
+		}
+		while (m > 0) {
+			a[m + n - 1] = b[m - 1];
+			m--;
+		}
+	}
 }

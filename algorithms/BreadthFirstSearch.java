@@ -67,4 +67,40 @@ public class BreadthFirstSearch {
 		}
 		return true;
 	}
+
+	/**
+	 * Given a start position and an target position on the grid. You can move
+	 * up,down,left,right from one node to another adjacent one on the grid.
+	 * However there are some walls on the grid that you cannot pass. Now find
+	 * the shortest path from the start to the target.
+	 * 
+	 * (This is easy done by BFS)
+	 * 
+	 * Extend. If you can remove three walls, then what is the shortest path
+	 * from start to the target.
+	 */
+	public void BFS(Vertex start, Vertex target) {
+		// Assume all vertex.visited = false
+		Queue queue = new Queue();
+		start.distance = 0;
+		queue.enqueue(start);
+		while (!queue.isEmpty()) {
+			Vertex vertex = (Vertex) queue.dequeue();
+			if (vertex.visited == false) {
+				vertex.visited = true;
+				for (Vertex v : vertex.getAdjacentVertices()) {
+					v.distance = vertex.distance + 1;
+					v.previous = vertex;
+					if (v == target) {
+						break;
+					}
+					queue.enqueue(v);
+				}
+			}
+		}
+		while (target.previous != null) {
+			System.out.println(target);
+			target = target.previous;
+		}
+	}
 }

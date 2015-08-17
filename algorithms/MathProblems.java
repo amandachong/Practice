@@ -235,6 +235,21 @@ public class MathProblems {
 		}
 	}
 
+	public static void printOddNumbers(int begin, int end) {
+		for (int i = 1; i <= 99; i += 2) {
+			System.out.println(i);
+		}
+	}
+
+	public static void multiplicationTable(int n) {
+		for (int i = 1; i <= n; i++) {
+			for (int j = 1; j <= n; j++) {
+				System.out.print(String.format("%4d", i * j));
+			}
+			System.out.println();
+		}
+	}
+
 	public static void printAllFactors(int n) {
 		int i = 1;
 		int range = n;
@@ -247,6 +262,18 @@ public class MathProblems {
 		}
 	}
 
+	public boolean isPrime(int n) {
+		if (n % 2 == 0) {
+			return false;
+		}
+		for (int i = 3; i * i <= n; i += 2) {
+			if (n % i == 0) {
+				return false;
+			}
+		}
+		return true;
+	}
+
 	public static void main(String[] args) {
 		System.out.println(reverse(123));
 		System.out.println(reverse(-123));
@@ -254,5 +281,7 @@ public class MathProblems {
 		System.out.println(evenFibonacci());
 		System.out.println(smallestMultiple());
 		printAllFactors(100);
+		multiplicationTable(12);
+		printOddNumbers(1, 99);
 	}
 }

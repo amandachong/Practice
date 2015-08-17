@@ -71,4 +71,25 @@ public class BinarySearch {
 		}
 		return -1;
 	}
+
+	/**
+	 * You have a sorted array containing the age of every person on Earth.
+	 * 
+	 * [0, 0, 0, 0, ..., 1, 1, ..., 28, 28, ..., 110, ...]
+	 * 
+	 * Find out how many people have each age.
+	 */
+	public static int bSearchAge(int[] array, int i, int j, int age) {
+		if (j < i) {
+			return -1;
+		}
+		int m = (i + j) / 2;
+		if (array[m] == age && (array[m + 1] != age || m == j)) {
+			return m;
+		} else if (array[m] <= age) {
+			return bSearchAge(array, i, m - 1, age);
+		} else {
+			return bSearchAge(array, m + 1, j, age);
+		}
+	}
 }
