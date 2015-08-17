@@ -1,15 +1,52 @@
+import java.util.ArrayList;
 import java.util.HashMap;
 
-public class TrieNode {
-
-	public char c;
-	HashMap<Character, TrieNode> children = new HashMap<Character, TrieNode>();
-	boolean isLeaf;
+public class TrieNode extends Node {
+	private HashMap<Character, TrieNode> children;
+	private ArrayList<Integer> indexes;
+	private char value;
 
 	public TrieNode() {
+		children = new HashMap<Character, TrieNode>();
+		indexes = new ArrayList<Integer>();
 	}
 
-	public TrieNode(char c) {
-		this.c = c;
+	public void insertString(String s, int index) {
+		indexes.add(index);
+		if (s != null && s.length() > 0) {
+			value = s.charAt(0);
+			TrieNode child = null;
+			if (children.containsKey(value)) {
+				child = children.get(value);
+			} else {
+				child = new TrieNode();
+				children.put(value, child);
+			}
+			String remainder = s.substring(1);
+			child.insertString(remainder, index + 1);
+		} else {
+			children.put('\0', null); // Terminating character.
+		}
+	}
+
+	public ArrayList<Integer> search(String s) {
+		if (s == null || s.length() == 0) {
+			return indexes;
+		} else {
+			char first = s.charAt(0);
+			if (children.containsKey(first)) {
+				String remainder = s.substring(1);
+				return children.get(first).search(remainder);
+			}
+		}
+		return null;
+	}
+
+	public boolean terminates() {
+		return children.containsKey('\0');
+	}
+
+	public TrieNode getChild(char c) {
+		return children.get(c);
 	}
 }
