@@ -4,23 +4,6 @@ import java.util.HashSet;
 public class Sample {
 
 	/**
-	 * You're given a dictionary of strings, and a key. Check if the key is
-	 * composed of an arbitrary number of concatenations of strings from the
-	 * dictionary. For example:
-	 * 
-	 * dictionary: "world", "hello", "super", "hell"
-	 * 
-	 * key: "helloworld" --> return true
-	 * 
-	 * key: "superman" --> return false
-	 * 
-	 * key: "hellohello" --> return true
-	 */
-	public boolean isConcatinationOfDictionary(String[] dictionary, String key) {
-		return true;
-	}
-
-	/**
 	 * Java: You're given a very large array of char's. Write a method to remove
 	 * duplicates in the array, in place. Optimize for space complexity, not
 	 * time complexity.
@@ -31,26 +14,25 @@ public class Sample {
 		}
 	}
 
-	// Given a string (1-d array) , find if there is any sub-sequence that
-	// repeats itself.
-	// Here, sub-sequence can be a non-contiguous pattern, with the same
-	// relative order.
-	//
-	// Eg:
-	//
-	// 1. abab <------yes, ab is repeated
-	// 2. abba <---- No, a and b follow different order
-	// 3. acbdaghfb <-------- yes there is a followed by b at two places
-	// 4. abcdacb <----- yes a followed by b twice
-	//
-	// The above should be applicable to ANY TWO (or every two) characters in
-	// the string and optimum over time.
-	//
-	// In the sense, it should be checked for every pair of characters in the
-	// string.
-	@SuppressWarnings({ "rawtypes", "unchecked" })
+	/**
+	 * Given a string (1-d array) , find if there is any sub-sequence that
+	 * repeats itself. Here, sub-sequence can be a non-contiguous pattern, with
+	 * the same relative order.
+	 * 
+	 * Eg:
+	 * 
+	 * 1. abab <------yes, ab is repeated 2. abba <---- No, a and b follow
+	 * different order 3. acbdaghfb <-------- yes there is a followed by b at
+	 * two places 4. abcdacb <----- yes a followed by b twice
+	 * 
+	 * The above should be applicable to ANY TWO (or every two) characters in
+	 * the string and optimum over time.
+	 * 
+	 * In the sense, it should be checked for every pair of characters in the
+	 * string.
+	 */
 	public boolean isSubSequence(char[] array) {
-		HashSet hashSet = new HashSet();
+		HashSet<Integer> hashSet = new HashSet<Integer>();
 		for (int i = 0; i < array.length; i++) {
 			for (int j = i + 1; j < array.length - 1; j++) {
 				if (hashSet.contains(array[i] + array[j])) {
@@ -147,100 +129,6 @@ public class Sample {
 	}
 
 	/**
-	 * Inorder traversal of binary tree recursively
-	 */
-	public void inOrderTraversal(TreeNode node) {
-		if (node == null)
-			return;
-		inOrderTraversal(node.left);
-		System.out.println(node);
-		inOrderTraversal(node.right);
-	}
-
-	/**
-	 * Inorder traversal of binary tree iteratively
-	 */
-	public void traverseInorderIterative(TreeNode node) {
-		Stack stack = new Stack();
-		while (node != null || !stack.isEmpty()) {
-			if (node != null) {
-				stack.push(node);
-				node = node.left;
-			} else {
-				node = (TreeNode) stack.pop();
-				System.out.println(node.value);
-				node = node.right;
-			}
-		}
-	}
-
-	// Given an integer, output all the prime factors of that integer, ex:
-	// input: 6, output: 2, 3
-	// input: 25, output: 5, 5
-	public static ArrayList<Integer> findPrimeFactors(int number) {
-		ArrayList<Integer> primeFactors = new ArrayList<Integer>();
-		if (number < 2) {
-			return primeFactors;
-		}
-		int n = number;
-		for (int i = 2; i <= n; i++) {
-			if (n % i == 0) {
-				primeFactors.add(i);
-				n /= i;
-			}
-		}
-		if (primeFactors.size() == 0) {
-			primeFactors.add(number);
-		}
-		return primeFactors;
-	}
-
-	public static void findFactors(int number) {
-		int range = number;
-		int i = 1;
-		while (i < range) {
-			if (number % i == 0) {
-				System.out.println(i);
-				if (i != number / i) {
-					System.out.println(number / i);
-				}
-				range = number / i;
-			}
-			i++;
-		}
-	}
-
-	/**
-	 * FACEBOOK
-	 * 
-	 * Question: Given an integer array with distinct elements, Find/Print all
-	 * triplets (a,b,c) such that a + b + c = target and a != b != c.
-	 * 
-	 * Example:
-	 * 
-	 * Array(2, -1, 0, -2, 1) Target: 0
-	 * 
-	 * Output: (2,0,-2) (exactly one such permutation) (-1,0,1)
-	 */
-
-	public static void findTripletsOfTarget(ArrayList<Integer> elements,
-			int target) {
-		HashSet<Integer> elementsHashed = new HashSet<Integer>();
-		elementsHashed.addAll(elements);
-
-		HashSet<String> triplets = new HashSet<String>();
-		for (int i = 0; i < elements.size(); i++) {
-			for (int j = i + 1; j < elements.size(); j++) {
-				int k = target - elements.get(i) - elements.get(j);
-				if (elementsHashed.contains(k) && k != elements.get(i)
-						&& k != elements.get(j)) {
-					triplets.add("" + i + j + k);
-				}
-			}
-		}
-	}
-
-	/**
 	 * Given a keyword (ex: "abc") and a list of words (ex: "aabc", "cab",
 	 * "ab"), write a function that will return all words in the list that are
 	 * the same/anagrams of the keyword. In this case, "cab" would be the only
@@ -330,19 +218,6 @@ public class Sample {
 		}
 	}
 
-	public void hanoi(int n, String src, String inter, String dest) {
-		if (n == 1) {
-			System.out.println("Move the disk from pole " + src + " to pole "
-					+ dest + ".");
-		}
-		if (n >= 2) {
-			hanoi(n - 1, src, dest, inter);
-			System.out.println("Move the disk from pole " + src + " to pole "
-					+ dest + ".");
-			hanoi(n - 1, inter, src, dest);
-		}
-	}
-
 	/**
 	 * Find if a string is a palindrom
 	 */
@@ -353,63 +228,6 @@ public class Sample {
 			}
 		}
 		return true;
-	}
-
-	/**
-	 * Assume vertices have distance initialized to INFINITE
-	 */
-	public void dijkstra(Vertex s) {
-
-	}
-
-	public boolean isTreeMirror(TreeNode root) {
-		return compareHelper(root.left, root.right);
-	}
-
-	public boolean compareHelper(TreeNode left, TreeNode right) {
-		if (left == null && right == null) {
-			return true;
-		}
-		if (left == right) {
-			if (compareHelper(left.left, right.left)
-					&& compareHelper(left.right, right.right))
-				return true;
-		}
-		return false;
-	}
-
-	public boolean symmetric(TreeNode root) {
-		if (root == null) {
-			return true;
-		}
-		return symmetricHelper(root.left, root.right);
-	}
-
-	public boolean symmetricHelper(TreeNode left, TreeNode right) {
-		if (left == null && right == null) {
-			return true;
-		}
-		if (symmetricHelper(left.left, right.right)
-				&& symmetricHelper(left.right, right.left)) {
-			return true;
-		}
-		return false;
-	}
-
-	/**
-	 * Given an array of integers. Move all non-zero elements to the left of all
-	 * zero elements.
-	 */
-	public static int[] moveZeroesLeft(int[] array) {
-		for (int p = 0, i = 0; i < array.length; i++) {
-			if (array[i] == 0) {
-				int temp = array[i];
-				array[i] = array[p];
-				array[p] = temp;
-				p++;
-			}
-		}
-		return array;
 	}
 
 	/**
@@ -433,47 +251,6 @@ public class Sample {
 		}
 	}
 
-	/**
-	 * Given an array of consecutive numbers in any order with exactly one
-	 * missing, find the missing number. E.g input: 2, 4, 3, 7, 6 output: 5
-	 */
-	public static int findMissingNumber(int[] array) {
-		HashSet<Integer> set = new HashSet<Integer>();
-		int min = Integer.MAX_VALUE;
-		int max = Integer.MIN_VALUE;
-		for (int i = 0; i < array.length; i++) {
-			set.add(array[i]);
-			if (min > array[i]) {
-				min = array[i];
-			}
-			if (max < array[i]) {
-				max = array[i];
-			}
-		}
-
-		for (int i = min; i < max; i++) {
-			if (!set.contains(i)) {
-				return i;
-			}
-		}
-		return -1;
-	}
-
-	/**
-	 * Move the first n numbers in a 10 element array to the end.
-	 * 
-	 * I think the way to do it was to reverse the array and then reverse the
-	 * first 10-n and then the last n.
-	 */
-	public static int[] reverseFirstNToEnd(int[] array, int n) {
-		for (int i = 0, j = array.length - 1; i < n && i < array.length; i++, j--) {
-			int temp = array[i];
-			array[i] = array[j];
-			array[j] = temp;
-		}
-		return array;
-	}
-
 	public static void main(String[] args) {
 		// findFactors(20);
 		// for (Integer primeFactor : findPrimeFactors(1092)) {
@@ -485,11 +262,5 @@ public class Sample {
 		// for (int i = 0; i < modified.length; i++) {
 		// System.out.println(modified[i]);
 		// }
-
-		int[] array = new int[] { 1, 2, 4, 0, 4, 0 };
-		int[] modified = reverseFirstNToEnd(array, 3);
-		for (int i = 0; i < modified.length; i++) {
-			System.out.println(modified[i]);
-		}
 	}
 }

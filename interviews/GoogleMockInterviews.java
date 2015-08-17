@@ -9,6 +9,19 @@ import java.util.Stack;
 
 public class GoogleMockInterviews {
 
+	public void hanoi(int n, String src, String inter, String dest) {
+		if (n == 1) {
+			System.out.println("Move the disk from pole " + src + " to pole "
+					+ dest + ".");
+		}
+		if (n >= 2) {
+			hanoi(n - 1, src, dest, inter);
+			System.out.println("Move the disk from pole " + src + " to pole "
+					+ dest + ".");
+			hanoi(n - 1, inter, src, dest);
+		}
+	}
+
 	/**
 	 * Given some input and a keyboard, return how to navigate through the
 	 * keyboard to produce the input using left, right, up and left. Accessing
@@ -257,6 +270,23 @@ public class GoogleMockInterviews {
 			count += countOverlap(first.children.get(i), second.children.get(i));
 		}
 		return count;
+	}
+
+	/**
+	 * You're given a dictionary of strings, and a key. Check if the key is
+	 * composed of an arbitrary number of concatenations of strings from the
+	 * dictionary. For example:
+	 * 
+	 * dictionary: "world", "hello", "super", "hell"
+	 * 
+	 * key: "helloworld" --> return true
+	 * 
+	 * key: "superman" --> return false
+	 * 
+	 * key: "hellohello" --> return true
+	 */
+	public boolean isConcatinationOfDictionary(String[] dictionary, String key) {
+		return true;
 	}
 
 	public static void main(String[] args) {

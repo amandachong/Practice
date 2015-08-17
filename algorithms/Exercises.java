@@ -11,13 +11,7 @@ public class Exercises {
 
 		System.out.println(isPalindrome("nooon"));
 
-		String s = "Hi, I'm Amanda";
-		System.out.println(reverseInPlace(s));
-
-		int n = 12;
-		System.out.println(fib(n));
-
-		multiplicationTable(n);
+		multiplicationTable(12);
 
 		printOddNumbers(1, 99);
 
@@ -219,46 +213,6 @@ public class Exercises {
 			}
 			System.out.println();
 		}
-	}
-
-	public static int fib(int n) {
-		if (n == 0)
-			return 0;
-		if (n == 1)
-			return 1;
-		return fib(n - 1) + fib(n - 2);
-	}
-
-	public static String reverse(String s) {
-		String reverse = "";
-		for (int i = s.length() - 1; i >= 0; i--) {
-			reverse = reverse + s.charAt(i);
-		}
-		return reverse;
-	}
-
-	public static String reverseInPlace(String s) {
-		char[] cArray = s.toCharArray();
-		for (int i = 0, j = s.length() - 1; i < s.length() / 2; i++, j--) {
-			char c = cArray[i];
-			cArray[i] = cArray[j];
-			cArray[j] = c;
-		}
-		String retVal = "";
-		for (int i = 0; i < cArray.length; i++) {
-			retVal += cArray[i];
-		}
-		return retVal;
-	}
-
-	public int recursiveFib(int n) {
-		if (n == 0) {
-			return 0;
-		}
-		if (n <= 2) {
-			return 1;
-		}
-		return recursiveFib(n - 1) + recursiveFib(n - 2);
 	}
 
 	public int iterativeFib(int n) {
