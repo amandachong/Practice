@@ -310,4 +310,74 @@ public class GoogleMockInterviews {
 			System.out.print(nextLargestNumber[i]);
 		}
 	}
+	
+	/**
+	 * Given a dictionary and a word, determine if the word is in the dictionary within 1 typo.
+	 */
+	public boolean isInDictionary(HashSet<String> dictionary, String s) {
+	  for (int i = 0; i < s.length(); i++) {
+	    for (String word : getAppended(s, i)) {
+	      if (dictionary.contains(word)) {
+	        return true;
+	      }
+	    }
+	  }
+	  return false;
+	}
+	
+	private ArrayList<String> getAppended(String s, int i) {
+	  ArrayList<String> list = new ArrayList<String>();
+	  int base = (int) 'a';
+	  for (int i = 0; i < 26; i++) {
+	    list.add(s.substring(0, i) + (base + i) + s.substring(i + 1));
+	  }
+	  list.add(s.substring(0, i) + s.substring(i + 1));
+	  return list;
+	}
+    
+    /**
+     * Given 2 strings, determine the 1 character that is different.
+     * 
+     * Example:
+     * Input: abcd, abcxd
+     * Output: x
+     */
+    public String getOddOneOut(String a, String b) {
+      String longer = a.length() > b.length() ? a : b;
+      String shorter = a.length() > b.length() ? b : a;
+      for (int i = 0; i < shorter.length(); i++) {
+        if (shorter.charAt(i) != longer.charAt(i)) {
+          return longer.charAt(i);
+        }
+      }
+      return longer.charAt(longer.length() - 1);
+    }
+    
+    /**
+     * Given 2 strings, determine the 1 character that is different.
+     * 
+     * Example:
+     * Input: abcd, abcxd
+     * Output: x
+     * 
+     * Don't use extra space.
+     */
+    public String getOddOneOut(String a, String b) {
+      int first;
+      int second;
+      for (int i = 0; i < a.length(); i++) {
+        first += a.charAt(i);
+        second += b.charAt(i);
+        if (first != second) {
+          return a.length() > b.length() ? a.charAt(i) : b.charAt(i);
+        }
+      }
+      return b.charAt(b.length() - 1);
+    }
+    
+    /**
+     * Design a way to get the trending topics using queries with the following metrics: timestamps and # times each query is used.
+     * 
+     * Use a heap/priority queue.  The heap will only contain queries for the last hour and for the top 100 queries.  Store heaps based on different durations such as hourly, weekly, monthly, yearly.  This will get rid of queries that are not necessarily trending but are searched at certain times such as New Years or Facebook queries.  Facebook is always being queried but is not necessarily "trending."  So is weather searches on Friday to find out what the weekend weather is like.
+     */
 }
