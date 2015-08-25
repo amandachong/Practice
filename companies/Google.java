@@ -147,4 +147,27 @@ public class Google {
 		}
 		return -1;
 	}
+
+	/**
+	 * “Determine whether a circular array of relative indices is composed of a
+	 * single, complete cycle.”
+	 */
+	public boolean hasCycle(int[] x) {
+		// test for null or zero length, else...
+		int currentPos = 0;
+		int n = x.length;
+		for (int i = 0; i < n; i++) {
+			currentPos = (currentPos + x[currentPos]) % n;
+			// -n < currentPos < n; fix so non-negative
+			if (currentPos < 0) {
+				currentPos += n;
+			}
+			// watch for off-by-one errors!
+			if (currentPos == 0 && i < n - 1) {
+				return false;
+			}
+		}
+		// after n steps
+		return currentPos == 0;
+	}
 }
