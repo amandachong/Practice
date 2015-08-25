@@ -36,10 +36,7 @@ public class Mocks {
 		Arrays.sort(first);
 		Arrays.sort(second);
 
-		if (new String(first).equals(new String(second))) {
-			return true;
-		}
-		return false;
+		return new String(first).equals(new String(second));
 	}
 
 	/**
@@ -137,7 +134,6 @@ public class Mocks {
 			node = first;
 		}
 		return before.next;
-
 	}
 
 	/**
@@ -359,12 +355,9 @@ public class Mocks {
 	 * Account for if the number has no positive or negative sign.
 	 */
 	private static boolean isPrefixValid(char c) {
-		if (c != '0' && c != '1' && c != '2' && c != '3' && c != '4'
-				&& c != '5' && c != '6' && c != '7' && c != '8' && c != '9'
-				&& c != '.' && c != '-' && c != '+') {
-			return false;
-		}
-		return true;
+		return c == '0' || c == '1' || c == '2' || c == '3' || c == '4'
+				|| c == '5' || c == '6' || c == '7' || c == '8' || c == '9'
+				|| c == '.' || c == '-' || c == '+';
 	}
 
 	public static void main(String[] args) {

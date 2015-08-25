@@ -26,4 +26,11 @@ public class FibonacciIterator implements Iterator<Integer> {
 	@Override
 	public void remove() {
 	}
+
+	public static void main(String[] args) {
+		FibonacciIterator iterator = new FibonacciIterator();
+		for (int i = 0; i < 20; i++) {
+			System.out.println(iterator.next());
+		}
+	}
 }

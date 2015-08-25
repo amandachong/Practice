@@ -179,15 +179,11 @@ public class TreeTraversal {
 	}
 
 	private boolean isSymmetric(TreeNode l, TreeNode r) {
-		if (l == null && r == null) {
-			return true;
-		} else if (l == null || r == null) {
-			return false;
+		if (l == null || r == null) {
+			return l == null && r == null;
 		}
-		if (l.value != r.value) {
-			return false;
-		}
-		return isSymmetric(l.left, r.right) && isSymmetric(l.right, r.left);
+		return l.value == r.value && isSymmetric(l.left, r.right)
+				&& isSymmetric(l.right, r.left);
 	}
 
 	/**

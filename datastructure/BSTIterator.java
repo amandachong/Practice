@@ -7,7 +7,10 @@ public class BSTIterator implements Iterator<TreeNode> {
 
 	public BSTIterator(TreeNode root) {
 		stack = new Stack<TreeNode>();
-		inOrder(root);
+		while (root != null) {
+			stack.push(root);
+			root = root.left;
+		}
 	}
 
 	@Override
@@ -17,14 +20,15 @@ public class BSTIterator implements Iterator<TreeNode> {
 
 	@Override
 	public TreeNode next() {
-		return stack.pop();
-	}
-
-	private void inOrder(TreeNode node) {
-		if (node != null) {
-			inOrder(node.left);
-			stack.push(node);
-			inOrder(node.right);
+		TreeNode node = stack.pop();
+		TreeNode result = node;
+		if (node.right != null) {
+			node = node.right;
+			while (node != null) {
+				stack.push(node);
+				node = node.left;
+			}
 		}
+		return result;
 	}
 }
