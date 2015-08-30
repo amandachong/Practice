@@ -7,11 +7,8 @@ public class BigInteger {
 	private Integer segment = 9;
 
 	public BigInteger(String a, String b) {
-		longer = new ArrayList<String>();
-		shorter = new ArrayList<String>();
-
-		String longString = a.length() > b.length() ? a : b;
-		String shortString = b.length() >= a.length() ? b : a;
+		String longString = a.length() >= b.length() ? a : b;
+		String shortString = b.length() >= b.length() ? b : a;
 
 		longer = segment(longString);
 		shorter = segment(shortString);
@@ -56,7 +53,7 @@ public class BigInteger {
 	}
 
 	public static void main(String[] args) {
-		BigInteger test = new BigInteger("9", "9");
+		BigInteger test = new BigInteger("123", "321");
 		ArrayList<Integer> answer = test.add();
 		for (int i = answer.size() - 1; i >= 0; i--) {
 			System.out.print(answer.get(i));
