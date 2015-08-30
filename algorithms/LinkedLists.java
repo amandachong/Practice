@@ -251,6 +251,32 @@ public class LinkedLists {
 		return result;
 	}
 
+	public ListNode mergeLists(ListNode a, ListNode b) {
+		ListNode result = new ListNode(0);
+		ListNode node = result;
+		if (a == null) {
+			return b;
+		} else if (b == null) {
+			return a;
+		}
+		while (a != null && b != null) {
+			if (a.val <= b.val) {
+				node.next = a;
+				a = a.next;
+			} else {
+				node.next = b;
+				b = b.next;
+			}
+			node = node.next;
+		}
+		if (a != null) {
+			node.next = a;
+		} else {
+			node.next = b;
+		}
+		return result.next;
+	}
+
 	/**
 	 * LeetCode - Palindrome Linked List: Given a singly linked list, determine
 	 * if it is a palindrome.
@@ -361,16 +387,15 @@ public class LinkedLists {
 	 * For example, given 1->2->3->4, you should return the list as 2->1->4->3.
 	 */
 	public static ListNode swapPairs(ListNode node) {
-		if (node == null) {
+		if (node == null || node.next == null) {
 			return node;
 		}
-		if (node.next == null) {
-			return node;
-		}
-		ListNode ret = node.next;
-		ListNode nextNext = node.next.next;
-		ret.next = node;
-		node.next = swapPairs(nextNext);
+		ListNode first = node;
+		ListNode second = node.next;
+		ListNode third = node.next.next;
+		ListNode ret = second;
+		ret.next = first;
+		ret.next.next = swapPairs(third);
 		return ret;
 	}
 
