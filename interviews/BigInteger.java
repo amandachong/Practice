@@ -8,7 +8,7 @@ public class BigInteger {
 
 	public BigInteger(String a, String b) {
 		String longString = a.length() >= b.length() ? a : b;
-		String shortString = b.length() >= b.length() ? b : a;
+		String shortString = b.length() <= a.length() ? b : a;
 
 		longer = segment(longString);
 		shorter = segment(shortString);

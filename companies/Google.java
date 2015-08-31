@@ -1,5 +1,4 @@
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.HashSet;
 
 public class Google {
@@ -124,50 +123,5 @@ public class Google {
 		for (int digit : product) {
 			System.out.print(digit + " ");
 		}
-	}
-
-	/**
-	 * You have an array of integers. Each integer in the array should be listed
-	 * three times in the array. Find the integer which does not comply to that
-	 * rule.
-	 */
-	public static int listed(int[] array, int n) {
-		HashMap<Integer, Integer> hashMap = new HashMap<Integer, Integer>();
-		for (int i = 0; i < array.length; i++) {
-			if (!hashMap.containsKey(array[i])) {
-				hashMap.put(array[i], 1);
-			} else {
-				hashMap.put(array[i], hashMap.get(array[i]) + 1);
-			}
-		}
-		for (int key : hashMap.keySet()) {
-			if (hashMap.get(key) != n) {
-				return key;
-			}
-		}
-		return -1;
-	}
-
-	/**
-	 * “Determine whether a circular array of relative indices is composed of a
-	 * single, complete cycle.”
-	 */
-	public boolean hasCycle(int[] x) {
-		// test for null or zero length, else...
-		int currentPos = 0;
-		int n = x.length;
-		for (int i = 0; i < n; i++) {
-			currentPos = (currentPos + x[currentPos]) % n;
-			// -n < currentPos < n; fix so non-negative
-			if (currentPos < 0) {
-				currentPos += n;
-			}
-			// watch for off-by-one errors!
-			if (currentPos == 0 && i < n - 1) {
-				return false;
-			}
-		}
-		// after n steps
-		return currentPos == 0;
 	}
 }
