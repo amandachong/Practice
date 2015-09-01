@@ -1,4 +1,4 @@
-public class BinarySearchTree {
+public class BinarySearchTreeQuestions {
 
 	/**
 	 * LeetCode – Convert Sorted Array to Binary Search Tree: Given an array
