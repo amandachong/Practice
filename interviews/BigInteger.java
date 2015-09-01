@@ -1,5 +1,8 @@
 import java.util.ArrayList;
 
+/**
+ * Implement a way to add to big integers, bigger than Integer.MAX_VALUE.
+ */
 public class BigInteger {
 
 	private ArrayList<String> longer;
