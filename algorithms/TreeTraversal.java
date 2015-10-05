@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Stack;
 
 public class TreeTraversal {
@@ -200,5 +203,43 @@ public class TreeTraversal {
 		}
 		return hasPathSum(root.left, sum - root.value)
 				|| hasPathSum(root.right, sum - root.value);
+	}
+
+	/**
+	 * LeetCode - Binary Tree Right Side View
+	 * 
+	 * Given a binary tree, imagine yourself standing on the right side of it,
+	 * return the values of the nodes you can see ordered from top to bottom.
+	 */
+	public List<Integer> rightSideView(TreeNode root) {
+		ArrayList<Integer> result = new ArrayList<Integer>();
+
+		if (root == null) {
+			return result;
+		}
+
+		LinkedList<TreeNode> queue = new LinkedList<TreeNode>();
+
+		while (queue.size() > 0) {
+			int size = queue.size();
+
+			for (int i = 0; i < size; i++) {
+				TreeNode top = queue.remove();
+
+				if (i == 0) {
+					result.add(top.value);
+				}
+
+				if (top.right != null) {
+					queue.add(top.right);
+				}
+
+				if (top.left != null) {
+					queue.add(top.left);
+				}
+			}
+		}
+
+		return result;
 	}
 }

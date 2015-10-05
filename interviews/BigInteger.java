@@ -56,7 +56,7 @@ public class BigInteger {
 	}
 
 	public static void main(String[] args) {
-		BigInteger test = new BigInteger("123", "321");
+		BigInteger test = new BigInteger("99999999", "99999999");
 		ArrayList<Integer> answer = test.add();
 		for (int i = answer.size() - 1; i >= 0; i--) {
 			System.out.print(answer.get(i));

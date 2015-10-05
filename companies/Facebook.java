@@ -41,7 +41,7 @@ public class Facebook {
 		if (left == null && right == null) {
 			return true;
 		}
-		if (left == right) {
+		if (left.value == right.value) {
 			if (compareHelper(left.left, right.left)
 					&& compareHelper(left.right, right.right))
 				return true;
@@ -65,31 +65,5 @@ public class Facebook {
 			return true;
 		}
 		return false;
-	}
-
-	/**
-	 * Given an array of consecutive numbers in any order with exactly one
-	 * missing, find the missing number. E.g input: 2, 4, 3, 7, 6 output: 5
-	 */
-	public static int findMissingNumber(int[] array) {
-		HashSet<Integer> set = new HashSet<Integer>();
-		int min = Integer.MAX_VALUE;
-		int max = Integer.MIN_VALUE;
-		for (int i = 0; i < array.length; i++) {
-			set.add(array[i]);
-			if (min > array[i]) {
-				min = array[i];
-			}
-			if (max < array[i]) {
-				max = array[i];
-			}
-		}
-
-		for (int i = min; i < max; i++) {
-			if (!set.contains(i)) {
-				return i;
-			}
-		}
-		return -1;
 	}
 }

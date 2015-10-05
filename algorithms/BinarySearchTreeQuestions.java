@@ -41,4 +41,25 @@ public class BinarySearchTreeQuestions {
 		}
 		return root;
 	}
+
+	/**
+	 * Binary Search Tree Validity
+	 */
+	boolean isValid(TreeNode root) {
+		return isValidHelper(root, Integer.MIN_VALUE, Integer.MAX_VALUE);
+	}
+
+	boolean isValidHelper(TreeNode curr, int min, int max) {
+		if (curr.left != null) {
+			if (curr.left.value < min
+					|| !isValidHelper(curr.left, min, curr.value))
+				return false;
+		}
+		if (curr.right != null) {
+			if (curr.right.value > max
+					|| !isValidHelper(curr.right, curr.value, max))
+				return false;
+		}
+		return true;
+	}
 }

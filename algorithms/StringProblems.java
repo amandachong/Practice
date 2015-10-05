@@ -191,11 +191,7 @@ public class StringProblems {
 			cArray[i] = cArray[j];
 			cArray[j] = c;
 		}
-		String retVal = "";
-		for (int i = 0; i < cArray.length; i++) {
-			retVal += cArray[i];
-		}
-		return retVal;
+		return new String(cArray);
 	}
 
 	public static int stringToInt(String s) {

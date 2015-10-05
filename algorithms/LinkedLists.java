@@ -67,41 +67,36 @@ public class LinkedLists {
 		return n.value;
 	}
 
-	public ListNode add(ListNode first, ListNode second, int carry) {
-		if (first == null && second == null) {
-			return null;
-		}
-		first.value = first.value + second.value + carry;
-		carry = first.value % 10;
-		first.value = first.value - carry;
+	public ListNode addTwoNumbers(ListNode a, ListNode b) {
+		ListNode head = new ListNode(0);
 
-		add(first.next, second.next, carry);
+		ListNode first = a;
+		ListNode second = b;
+		ListNode third = head;
 
-		return first;
-	}
-
-	public ListNode add(ListNode n1, ListNode n2) {
-		ListNode result = null;
 		int carry = 0;
-		int value = 0;
-		ListNode n = result;
-		while (true) {
-			if (n1 == null && n2 == null)
-				break;
-			value = carry;
-			if (n1 != null)
-				value += n1.value;
-			if (n2 != null)
-				value += n2.value;
-			if (value > 10) {
-				carry = 1;
+
+		while (first != null || second != null) {
+			if (first != null) {
+				carry += first.val;
+				first = first.next;
 			}
-			n = new ListNode(value % 10);
-			n1 = n1.next;
-			n2 = n2.next;
-			n = n.next;
+
+			if (second != null) {
+				carry += second.val;
+				second = second.next;
+			}
+
+			third.next = new ListNode(carry % 10);
+			carry = carry / 10;
+			third = third.next;
 		}
-		return result;
+
+		if (carry > 0) {
+			third.next = new ListNode(carry);
+		}
+
+		return head.next;
 	}
 
 	public ListNode findBeginning(ListNode head) {
@@ -233,22 +228,32 @@ public class LinkedLists {
 	 * new list should be made by splicing together the nodes of the first two
 	 * lists.
 	 */
+	public ListNode mergeTwoLists(ListNode a, ListNode b) {
+		ListNode merged = new ListNode(0);
 
-	public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
-		ListNode result;
-		if (l1 == null) {
-			return l2;
-		} else if (l2 == null) {
-			return l1;
+		ListNode first = a;
+		ListNode second = b;
+		ListNode third = merged;
+
+		while (first != null && second != null) {
+			if (first.val <= second.val) {
+				third.next = first;
+				first = first.next;
+			} else {
+				third.next = second;
+				second = second.next;
+			}
+			third = third.next;
 		}
-		if (l1.val <= l2.val) {
-			result = l1;
-			l1.next = mergeTwoLists(l1.next, l2);
-		} else {
-			result = l2;
-			result.next = mergeTwoLists(l1, l2.next);
+
+		if (first != null) {
+			third.next = first;
 		}
-		return result;
+		if (second != null) {
+			third.next = second;
+		}
+
+		return merged.next;
 	}
 
 	public ListNode mergeLists(ListNode a, ListNode b) {
@@ -425,5 +430,23 @@ public class LinkedLists {
 			System.out.println(node.val);
 			node = node.next;
 		}
+	}
+
+	/**
+	 * LeetCode - Given a linked list, determine if it has a cycle in it.
+	 */
+	public boolean hasCycle(ListNode head) {
+		ListNode fast = head;
+		ListNode slow = head;
+
+		while (fast != null && fast.next != null) {
+			slow = slow.next;
+			fast = fast.next.next;
+
+			if (slow == fast) {
+				return true;
+			}
+		}
+		return true;
 	}
 }
