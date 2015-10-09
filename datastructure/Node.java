@@ -7,6 +7,7 @@ public class Node {
 	private Node[] adjacentNodes;
 	public int distance;
 	public Node min;
+	public int key;
 
 	public Node() {
 	}
@@ -15,8 +16,17 @@ public class Node {
 		this.value = value;
 	}
 
+	public Node(int key, int value) {
+		this.key = key;
+		this.value = value;
+	}
+
 	public int getValue() {
 		return value;
+	}
+
+	public int getKey() {
+		return key;
 	}
 
 	public void appendToTail(int value) {

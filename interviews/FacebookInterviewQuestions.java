@@ -28,6 +28,7 @@ public class FacebookInterviewQuestions {
 			n.data = node.data;
 		} else {
 			n.next = flatten(node.child);
+			head = n;
 			while (n.next != null) {
 				n = n.next;
 			}
