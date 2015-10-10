@@ -3,11 +3,11 @@
  */
 public class UberTreeSerializer {
 
-	private final String NULL_TOKEN = "#";
+	private final String DELIMITER = "#";
 
 	public String serialize(TreeNode root) {
 		if (root == null) {
-			return NULL_TOKEN;
+			return DELIMITER;
 		}
 		String s = "" + root.value;
 		s += serialize(root.left);
@@ -19,7 +19,7 @@ public class UberTreeSerializer {
 			return null;
 		}
 		String value = s.substring(0, 1);
-		if (value.equals(NULL_TOKEN)) {
+		if (value.equals(DELIMITER)) {
 			return null;
 		}
 		TreeNode head = new TreeNode(Integer.parseInt(value));

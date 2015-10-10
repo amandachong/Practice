@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Hashtable;
 import java.util.Stack;
 
@@ -133,14 +134,53 @@ public class Uber {
 	 * Input a string and output the number of words.
 	 */
 	public int numberOfWords(String s) {
-		return 0;
+		return s.split("\\s+").length;
+	}
+
+	/**
+	 * Write code to print the matrix from outside to inside.
+	 */
+	public void outsideInside(int[][] matrix) {
+		int xLayers = matrix.length / 2;
+		int yLayers = matrix[0].length / 2;
+
+		for (int i = 0; i < yLayers; i++) {
+			for (int j = 0; j < xLayers; j++) {
+
+			}
+		}
 	}
 
 	/**
 	 * Implement Boggle.
 	 */
-	public void boggle() {
-
+	public HashSet<String> boggle(Trie dictionary, GraphNode[][] grid, int min,
+			int max) {
+		HashSet<String> words = new HashSet<>();
+		int rows = grid.length;
+		int columns = grid[0].length;
+		for (int i = 0; i < rows; i++) {
+			for (int j = 0; j < columns; j++) {
+				Stack<GraphNode> stack = new Stack<GraphNode>();
+				stack.push(grid[i][j]);
+				String prefix = "";
+				while (!stack.isEmpty()) {
+					GraphNode node = stack.pop();
+					node.visited = true;
+					prefix += node.c;
+					if (dictionary.search(prefix) != null) {
+						words.add(prefix);
+					}
+					GraphNode[] nodes = node.neighbours;
+					for (GraphNode adjacent : nodes) {
+						if (!adjacent.visited) {
+							stack.push(adjacent);
+						}
+					}
+				}
+			}
+		}
+		return words;
 	}
 
 	/**
