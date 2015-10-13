@@ -1,0 +1,126 @@
+Java environment ready. Hit run to try out some code!
+1:45pm - Amanda running 50 lines of Java
+Solution.java:39: error: cannot find symbol
+    currentRate = (workCount + 1) / (currentTime - startTime);
+    ^
+  symbol:   variable currentRate
+  location: class RateLimiter
+Solution.java:40: error: cannot find symbol
+    if (currentRate > rate) {
+        ^
+  symbol:   variable currentRate
+  location: class RateLimiter
+2 errors
+2:04pm - Amanda running 50 lines of Java
+Solution.java:33: error: -> expected
+    this.queue = Queue<Long>();
+                              ^
+Solution.java:33: error: ';' expected
+    this.queue = Queue<Long>();
+                               ^
+Solution.java:37: error: illegal start of expression
+  public boolean doWork() {
+  ^
+Solution.java:37: error: ';' expected
+  public boolean doWork() {
+        ^
+Solution.java:37: error: ';' expected
+  public boolean doWork() {
+                         ^
+Solution.java:50: error: reached end of file while parsing
+}
+ ^
+6 errors
+2:05pm - Amanda running 50 lines of Java
+Solution.java:33: error: Queue is abstract; cannot be instantiated
+    this.queue = new Queue<Long>();
+                 ^
+1 error
+2:07pm - Amanda running 50 lines of Java
+Hello, World!
+Welcome to CoderPad.
+This pad is running Java 8.
+2:09pm - Amanda running 49 lines of Java
+Solution.java:14: error: ')' expected
+    RateLimiter rateLimiter = new RateLimiter((20, 30000);
+                                                 ^
+1 error
+2:09pm - Amanda running 49 lines of Java
+Solution.java:14: error: ')' expected
+    RateLimiter rateLimiter = new RateLimiter((20, 30000);
+                                                 ^
+1 error
+2:09pm - Amanda running 49 lines of Java
+Exception in thread "main" java.lang.NullPointerException
+	at RateLimiter.doWork(Solution.java:39)
+	at Solution.main(Solution.java:17)
+2:13pm - Amanda running 48 lines of Java
+true
+true
+true
+true
+true
+true
+true
+true
+true
+true
+true
+true
+true
+true
+true
+true
+true
+true
+true
+true
+false
+2:15pm - Amanda running 52 lines of Java
+Solution.java:19: error: unreported exception InterruptedException; must be caught or declared to be thrown
+    Thread.sleep(500);
+                ^
+1 error
+2:15pm - Amanda running 56 lines of Java
+true
+true
+true
+true
+true
+true
+true
+true
+true
+true
+true
+true
+true
+true
+true
+true
+true
+true
+true
+true
+false
+true
+true
+true
+true
+true
+true
+true
+true
+true
+true
+true
+true
+true
+true
+true
+true
+true
+true
+true
+true
+false
